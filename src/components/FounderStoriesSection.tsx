@@ -3,30 +3,12 @@ import {
   Box,
   Typography,
   Container,
-  Card,
-  CardContent,
-  Avatar,
-  Stack
+  Stack,
+  Paper
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import StarIcon from '@mui/icons-material/Star';
-import DiamondIcon from '@mui/icons-material/Diamond';
-
-// Types
-interface FounderStory {
-  id: string;
-  name: string;
-  title: string;
-  company: string;
-  testimonial: string;
-  avatarUrl: string;
-  icon: 'trophy' | 'star' | 'diamond';
-}
-
-interface FounderStoriesSectionProps {
-  stories?: FounderStory[];
-}
+import FounderProfile from './FounderProfile';
+import FounderMessage from './FounderMessage';
 
 // Styled Components
 const SectionContainer = styled(Box)(({ theme }) => ({
@@ -36,228 +18,92 @@ const SectionContainer = styled(Box)(({ theme }) => ({
 
 const SectionTitle = styled(Typography)(({ theme }) => ({
   textAlign: 'center',
-  marginBottom: theme.spacing(6),
-  fontWeight: 600,
-  color: theme.palette.text.primary
+  marginBottom: theme.spacing(8),
+  fontWeight: 800,
+  color: theme.palette.text.primary,
+  fontSize: '3rem',
+  [theme.breakpoints.down('md')]: {
+    fontSize: '2.5rem',
+    marginBottom: theme.spacing(6)
+  }
 }));
 
-const StoriesGrid = styled(Stack)(({ theme }) => ({
+const FounderCard = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(6),
+  borderRadius: theme.spacing(3),
+  border: `3px solid ${theme.palette.primary.main}`,
+  boxShadow: '0 12px 48px rgba(0, 81, 165, 0.15)',
+  background: theme.palette.background.paper,
+  maxWidth: 1200,
+  margin: '0 auto'
+}));
+
+const ContentContainer = styled(Stack)(({ theme }) => ({
   flexDirection: 'row',
-  gap: theme.spacing(4),
-  justifyContent: 'center',
-  [theme.breakpoints.down('lg')]: {
+  gap: theme.spacing(6),
+  alignItems: 'center',
+  [theme.breakpoints.down('md')]: {
     flexDirection: 'column',
-    alignItems: 'center',
-    gap: theme.spacing(3)
+    gap: theme.spacing(4),
+    textAlign: 'center'
   }
 }));
 
-const StoryCard = styled(Card)(({ theme }) => ({
-  maxWidth: 350,
-  width: '100%',
-  borderRadius: theme.spacing(2),
-  border: `2px solid ${theme.palette.grey[300]}`,
-  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
-  overflow: 'hidden',
-  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-  '&:hover': {
-    transform: 'translateY(-4px)',
-    boxShadow: '0 8px 30px rgba(0, 0, 0, 0.12)'
-  }
-}));
-
-const CardHeader = styled(Box)(({ theme }) => ({
-  background: `linear-gradient(135deg, ${theme.palette.secondary.main} 0%, #FFD700 100%)`,
-  padding: theme.spacing(2),
+const ProfileSection = styled(Box)(({ theme }) => ({
+  minWidth: 300,
   display: 'flex',
-  alignItems: 'center',
   justifyContent: 'center',
-  gap: theme.spacing(1),
-  position: 'relative'
-}));
-
-const HeaderText = styled(Typography)(({ theme }) => ({
-  fontWeight: 700,
-  fontSize: '14px',
-  letterSpacing: '1px',
-  color: theme.palette.text.primary,
-  textTransform: 'uppercase'
-}));
-
-const IconWrapper = styled(Box)(({ theme }) => ({
-  color: theme.palette.text.primary,
-  display: 'flex',
-  alignItems: 'center',
-  '& svg': {
-    fontSize: '20px'
+  [theme.breakpoints.down('md')]: {
+    minWidth: 'auto',
+    width: '100%'
   }
 }));
 
-const StoryContent = styled(CardContent)(({ theme }) => ({
-  padding: theme.spacing(4, 3),
-  textAlign: 'center',
+const MessageSection = styled(Box)(({ theme }) => ({
+  flex: 1,
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center',
-  gap: theme.spacing(2.5)
+  justifyContent: 'center'
 }));
-
-const FounderAvatar = styled(Avatar)(({ theme }) => ({
-  width: 80,
-  height: 80,
-  border: `3px solid ${theme.palette.grey[200]}`,
-  marginBottom: theme.spacing(1)
-}));
-
-const TestimonialContainer = styled(Box)(({ theme }) => ({
-  position: 'relative',
-  marginBottom: theme.spacing(2)
-}));
-
-const QuoteIcon = styled(Typography)(({ theme }) => ({
-  fontSize: '20px',
-  color: theme.palette.primary.main,
-  fontWeight: 'bold',
-  lineHeight: 1
-}));
-
-const TestimonialText = styled(Typography)(({ theme }) => ({
-  fontStyle: 'italic',
-  lineHeight: 1.6,
-  color: theme.palette.text.secondary,
-  fontSize: '14px',
-  textAlign: 'center',
-  padding: theme.spacing(0, 1)
-}));
-
-const FounderName = styled(Typography)(({ theme }) => ({
-  fontWeight: 700,
-  fontSize: '16px',
-  color: theme.palette.text.primary,
-  marginBottom: theme.spacing(0.5)
-}));
-
-const FounderTitle = styled(Typography)(({ theme }) => ({
-  fontSize: '14px',
-  color: theme.palette.text.secondary,
-  fontWeight: 500
-}));
-
-const ReadMoreLink = styled(Typography)(({ theme }) => ({
-  fontSize: '14px',
-  color: theme.palette.secondary.main,
-  fontWeight: 600,
-  cursor: 'pointer',
-  marginTop: theme.spacing(1),
-  '&:hover': {
-    textDecoration: 'underline'
-  }
-}));
-
-// Default data
-const defaultStories: FounderStory[] = [
-  {
-    id: '1',
-    name: 'Nitish',
-    title: 'Founder',
-    company: 'Co-Founder, Tech Startup',
-    testimonial: 'Working with Aditya Ventures helped me identify the core metrics that actually matter for our diagnostic call alone worth 10X investment.',
-    avatarUrl: 'https://i.pravatar.cc/150?img=8',
-    icon: 'trophy'
-  },
-  {
-    id: '2',
-    name: 'Vandana',
-    title: 'Health Tech',
-    company: 'Co-Founder, Fintech Platform',
-    testimonial: 'Aditya\'s approach to founder-market fit has completely changed how we think about product development and eliminated blind spots that existed.',
-    avatarUrl: 'https://i.pravatar.cc/150?img=14',
-    icon: 'star'
-  },
-  {
-    id: '3',
-    name: 'Nitish',
-    title: 'Founder',
-    company: '',
-    testimonial: 'The traction-leak diagnosis helped us focus on what drives real growth and made the biggest change in our business since launch.',
-    avatarUrl: 'https://i.pravatar.cc/150?img=12',
-    icon: 'diamond'
-  }
-];
-
-// Icon mapping
-const getIcon = (iconType: string) => {
-  switch (iconType) {
-    case 'trophy':
-      return <EmojiEventsIcon />;
-    case 'star':
-      return <StarIcon />;
-    case 'diamond':
-      return <DiamondIcon />;
-    default:
-      return <EmojiEventsIcon />;
-  }
-};
 
 // Main Component
-const FounderStoriesSection: React.FC<FounderStoriesSectionProps> = ({
-  stories = defaultStories
-}) => {
+const FounderStoriesSection: React.FC = () => {
+  const founderData = {
+    name: 'Aditya Bajaj',
+    imageUrl: 'https://i.pravatar.cc/400?img=15',
+    imageAlt: 'Aditya Bajaj - Founder and Business Coach',
+    messages: [
+      'Aditya has built, scaled, and exited multiple ventures across D2C, Tech Platforms and Services.',
+      'He teaches entrepreneurship at IE Business School, Spain and has mentored over 200 founders who have collectively raised more than ₹50 Cr.'
+    ],
+    highlightMessage: 'His approach is structured, scientific, and relentlessly practical.'
+  };
+
   return (
     <SectionContainer>
       <Container maxWidth="lg">
-        <SectionTitle variant="h4">
-          Founder Stories
+        <SectionTitle variant="h2">
+          About Your Coach
         </SectionTitle>
         
-        <StoriesGrid>
-          {stories.map((story) => (
-            <StoryCard key={story.id}>
-              <CardHeader>
-                <IconWrapper>
-                  {getIcon(story.icon)}
-                </IconWrapper>
-                <HeaderText>
-                  Founder Story
-                </HeaderText>
-              </CardHeader>
-              
-              <StoryContent>
-                <FounderAvatar
-                  src={story.avatarUrl}
-                  alt={`${story.name} - ${story.title}`}
-                />
-                
-                <TestimonialContainer>
-                  <Stack direction="row" alignItems="flex-start" spacing={0.5}>
-                    <QuoteIcon>"</QuoteIcon>
-                    <TestimonialText>
-                      {story.testimonial}
-                    </TestimonialText>
-                    <QuoteIcon>"</QuoteIcon>
-                  </Stack>
-                </TestimonialContainer>
-                
-                <Box textAlign="center">
-                  <FounderName>
-                    {story.name}, {story.title}
-                  </FounderName>
-                  {story.company && (
-                    <FounderTitle>
-                      {story.company}
-                    </FounderTitle>
-                  )}
-                </Box>
-                
-                {story.id === '3' && (
-                  <ReadMoreLink>
-                    Read More
-                  </ReadMoreLink>
-                )}
-              </StoryContent>
-            </StoryCard>
-          ))}
-        </StoriesGrid>
+        <FounderCard elevation={0}>
+          <ContentContainer>
+            <ProfileSection>
+              <FounderProfile
+                name={founderData.name}
+                imageUrl={founderData.imageUrl}
+                imageAlt={founderData.imageAlt}
+              />
+            </ProfileSection>
+            
+            <MessageSection>
+              <FounderMessage
+                messages={founderData.messages}
+                highlightMessage={founderData.highlightMessage}
+              />
+            </MessageSection>
+          </ContentContainer>
+        </FounderCard>
       </Container>
     </SectionContainer>
   );

@@ -1,10 +1,11 @@
 import React from 'react';
-import { Box, Typography, Container, Stack, Card, CardContent, Button } from '@mui/material';
+import { Box, Typography, Container, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined';
 import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined';
 import Groups2OutlinedIcon from '@mui/icons-material/Groups2Outlined';
 import ArrowDownIcon from './icons/ArrowDownIcon';
+import NetworkCard from './NetworkCard';
 
 const SectionContainer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(8, 0),
@@ -30,52 +31,6 @@ const CardsContainer = styled(Stack)(({ theme }) => ({
   }
 }));
 
-const FeatureCard = styled(Card)(({ theme }) => ({
-  maxWidth: 350,
-  borderRadius: theme.spacing(2),
-  border: `2px solid ${theme.palette.grey[200]}`,
-  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
-  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-  '&:hover': {
-    transform: 'translateY(-8px)',
-    boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15)'
-  }
-}));
-
-const CardHeader = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(3, 3, 2, 3),
-  display: 'flex',
-  flexDirection: 'column',
-  gap: theme.spacing(2)
-}));
-
-const IconWrapper = styled(Box)(({ theme }) => ({
-  color: theme.palette.secondary.main,
-  fontSize: '32px',
-  display: 'flex',
-  alignItems: 'center'
-}));
-
-const CardImage = styled(Box)(({ theme }) => ({
-  height: 200,
-  backgroundSize: 'cover',
-  backgroundPosition: 'center',
-  borderRadius: `0 0 ${theme.spacing(2)} ${theme.spacing(2)}`
-}));
-
-const ActionButton = styled(Button)(({ theme }) => ({
-  marginTop: theme.spacing(2),
-  color: theme.palette.text.secondary,
-  fontWeight: 600,
-  textTransform: 'uppercase',
-  fontSize: '14px',
-  letterSpacing: '0.5px',
-  '&:hover': {
-    backgroundColor: 'transparent',
-    color: theme.palette.primary.main
-  }
-}));
-
 const NetworkSection: React.FC = () => {
   const features = [
     {
@@ -83,27 +38,24 @@ const NetworkSection: React.FC = () => {
       title: 'Build Your Venture',
       description: 'Turn or a restaurant owner gow a thriving startup startup with our our expert guidance auidance at it.',
       action: 'LEARN MORE →',
-      imageStyle: {
-        background: 'linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 50%, #45B7D1 100%)'
-      }
+      imageUrl: 'https://images.unsplash.com/photo-1514820720301-4c4790309f46?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTAwNDR8MHwxfHNlYXJjaHwxfHx0cm9waHklMjBzdWNjZXNzJTIwYWNoaWV2ZW1lbnQlMjBidXNpbmVzc3xlbnwwfDB8fHwxNzU3MDc0MjAyfDA&ixlib=rb-4.1.0&q=85',
+      imageAlt: 'Trophy, success, achievement, business venture, startup success, golden trophy, winner, accomplishment - Photo by Ariel on Unsplash'
     },
     {
       icon: <DiamondOutlinedIcon />,
       title: 'Accelerate Growth',
       description: 'Join our inbucator or delivery riders delivership for mentorship, funding opportunities & rapid scaling.',
       action: 'DISCOVER PROGRAMS →',
-      imageStyle: {
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-      }
+      imageUrl: 'https://images.unsplash.com/photo-1592136184798-ca0d8e17643a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTAwNDR8MHwxfHNlYXJjaHwyfHxkaWFtb25kJTIwZ3Jvd3RoJTIwY2hhcnQlMjBwcm9ncmVzc3xlbnwwfDB8fGJsdWV8MTc1NzA3NDIwMXww&ixlib=rb-4.1.0&q=85',
+      imageAlt: 'Diamond, growth, acceleration, scaling, business growth, upward trend, progress, development - Photo by Daniele Levis Pelusi on Unsplash'
     },
     {
       icon: <Groups2OutlinedIcon />,
       title: 'Join Our Community',
       description: 'If you are passionate about helping us achieve our goal to & resources for lifelong meals join team.',
       action: 'JOIN NOW',
-      imageStyle: {
-        background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
-      }
+      imageUrl: 'https://images.unsplash.com/photo-1732209556962-df3c1334bc47?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTAwNDR8MHwxfHNlYXJjaHw4fHx0ZWFtJTIwY29tbXVuaXR5JTIwcGVvcGxlJTIwY29sbGFib3JhdGlvbnxlbnwwfDB8fHwxNzU3MDc0MjAyfDA&ixlib=rb-4.1.0&q=85',
+      imageAlt: 'Community, team, collaboration, networking, people together, teamwork, group, partnership - Photo by Mushvig Niftaliyev on Unsplash'
     }
   ];
 
@@ -119,23 +71,15 @@ const NetworkSection: React.FC = () => {
         
         <CardsContainer>
           {features.map((feature, index) => (
-            <FeatureCard key={index}>
-              <CardHeader>
-                <IconWrapper>
-                  {feature.icon}
-                </IconWrapper>
-                <Typography variant="h6" fontWeight={700} color="text.primary">
-                  {feature.title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
-                  {feature.description}
-                </Typography>
-                <ActionButton>
-                  {feature.action}
-                </ActionButton>
-              </CardHeader>
-              <CardImage sx={feature.imageStyle} />
-            </FeatureCard>
+            <NetworkCard
+              key={index}
+              icon={feature.icon}
+              title={feature.title}
+              description={feature.description}
+              action={feature.action}
+              imageUrl={feature.imageUrl}
+              imageAlt={feature.imageAlt}
+            />
           ))}
         </CardsContainer>
       </Container>
