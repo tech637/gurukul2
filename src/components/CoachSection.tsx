@@ -15,13 +15,14 @@ const SectionTitle = styled(Typography)(({ theme }) => ({
 }));
 
 const CoachCard = styled(Card)(({ theme }) => ({
-  maxWidth: 800,
+  maxWidth: 1000,
   margin: '0 auto',
-  padding: theme.spacing(4),
-  borderRadius: theme.spacing(2),
+  padding: theme.spacing(6),
+  borderRadius: theme.spacing(3),
   boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
   position: 'relative',
   border: `2px solid ${theme.palette.primary.main}`,
+  minHeight: '400px',
   '&::before': {
     content: '""',
     position: 'absolute',
@@ -46,45 +47,62 @@ const CoachCard = styled(Card)(({ theme }) => ({
 
 const CoachCardContent = styled(CardContent)(({ theme }) => ({
   display: 'flex',
-  gap: theme.spacing(4),
-  alignItems: 'flex-start',
+  gap: theme.spacing(6),
+  alignItems: 'center',
   padding: 0,
+  height: '100%',
   '&:last-child': {
     paddingBottom: 0
   },
   [theme.breakpoints.down('md')]: {
     flexDirection: 'column',
     alignItems: 'center',
-    textAlign: 'center'
+    textAlign: 'center',
+    gap: theme.spacing(4)
   }
 }));
 
 const CoachAvatar = styled(Avatar)(({ theme }) => ({
-  width: 180,
-  height: 180,
+  width: 250,
+  height: 300,
+  borderRadius: theme.spacing(2), // Rectangular with rounded corners
   border: `4px solid ${theme.palette.primary.light}`,
   boxShadow: '0 4px 20px rgba(0, 81, 165, 0.2)',
+  flexShrink: 0,
   [theme.breakpoints.down('md')]: {
-    width: 150,
-    height: 150
+    width: 200,
+    height: 240
+  },
+  [theme.breakpoints.down('sm')]: {
+    width: 180,
+    height: 220
   }
 }));
 
 const CoachInfo = styled(Stack)(({ theme }) => ({
   flex: 1,
-  gap: theme.spacing(2.5)
+  gap: theme.spacing(3),
+  justifyContent: 'center',
+  height: '100%'
 }));
 
 const CoachName = styled(Typography)(({ theme }) => ({
   fontWeight: 700,
   color: theme.palette.primary.main,
-  marginBottom: theme.spacing(1)
+  marginBottom: theme.spacing(2),
+  fontSize: '32px',
+  [theme.breakpoints.down('md')]: {
+    fontSize: '28px'
+  }
 }));
 
 const CoachDescription = styled(Typography)(({ theme }) => ({
   lineHeight: 1.7,
   color: theme.palette.text.primary,
-  fontSize: '16px'
+  fontSize: '18px',
+  [theme.breakpoints.down('md')]: {
+    fontSize: '16px'
+  }
 }));
 
 const BottomAccents = styled(Box)(({ theme }) => ({
@@ -104,7 +122,7 @@ const BottomAccents = styled(Box)(({ theme }) => ({
     height: 16,
     backgroundColor: theme.palette.primary.main,
     borderRadius: '2px',
-    transform: 'translateX(calc(800px - 32px))'
+    transform: 'translateX(calc(1000px - 32px))'
   }
 }));
 
@@ -119,7 +137,7 @@ const CoachSection: React.FC = () => {
         <CoachCard>
           <CoachCardContent>
             <CoachAvatar 
-              src="https://i.pravatar.cc/180?img=12"
+              src="../assets/aditya.jpg"
               alt="Aditya Bajaj - Startup Coach"
             />
             

@@ -23,6 +23,43 @@ const FundableText = styled('span')(({ theme }) => ({
   fontWeight: 600
 }));
 
+const VideoContainer = styled(Box)(({ theme }) => ({
+  width: '100%',
+  maxWidth: '800px',
+  height: '450px',
+  borderRadius: theme.spacing(2),
+  overflow: 'hidden',
+  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+  backgroundColor: '#000',
+  position: 'relative',
+  marginTop: theme.spacing(4),
+  [theme.breakpoints.down('md')]: {
+    height: '300px',
+    maxWidth: '100%'
+  }
+}));
+
+const VideoElement = styled('video')({
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+  borderRadius: 'inherit'
+});
+
+const VideoPlaceholder = styled(Box)(({ theme }) => ({
+  width: '100%',
+  height: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+  color: 'white',
+  fontSize: '18px',
+  fontWeight: 600,
+  textAlign: 'center',
+  padding: theme.spacing(4)
+}));
+
 const HowWeHelpSection: React.FC = () => {
   return (
     <SectionContainer>
@@ -39,6 +76,28 @@ const HowWeHelpSection: React.FC = () => {
             Our mission is to <HighlightText>de-risk</HighlightText> the founder journey by providing the frameworks
             to turn promising ideas into <FundableText>fundable</FundableText> businesses.
           </Typography>
+          
+          <VideoContainer>
+            {/* Replace with your actual video source */}
+            <VideoElement
+              controls
+              poster="/assets/video-poster.jpg" // Add a poster image if you have one
+            >
+              <source src="/assets/demo-video.mp4" type="video/mp4" />
+              <source src="/assets/demo-video.webm" type="video/webm" />
+              {/* Fallback content */}
+              <VideoPlaceholder>
+                <Box>
+                  <Typography variant="h6" sx={{ mb: 2 }}>
+                    🎥 Demo Video Coming Soon
+                  </Typography>
+                  <Typography variant="body2">
+                    Watch how we help founders turn ideas into fundable businesses
+                  </Typography>
+                </Box>
+              </VideoPlaceholder>
+            </VideoElement>
+          </VideoContainer>
         </ContentWrapper>
       </Container>
     </SectionContainer>

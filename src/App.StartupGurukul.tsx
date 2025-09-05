@@ -6,7 +6,6 @@ import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import NavigationPills from './components/NavigationPills';
 import HowWeHelpSection from './components/HowWeHelpSection';
-import DeviceMockup from './components/DeviceMockup';
 import NetworkSection from './components/NetworkSection';
 import ExploreCoursesSection from './components/ExploreCoursesSection';
 import SupportSection from './components/SupportSection';
@@ -24,7 +23,6 @@ const StartupGurukulApp: React.FC = () => {
       <HeroSection />
       <NavigationPills />
       <HowWeHelpSection />
-      <DeviceMockup />
       <NetworkSection />
       <ExploreCoursesSection />
       <SupportSection />

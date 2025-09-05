@@ -67,7 +67,7 @@ const StoryCard = styled(Card)(({ theme }) => ({
 }));
 
 const CardHeader = styled(Box)(({ theme }) => ({
-  background: `linear-gradient(135deg, ${theme.palette.secondary.main} 0%, #FFD700 100%)`,
+  background: '#001F3F', // Navy blue background
   padding: theme.spacing(2),
   display: 'flex',
   alignItems: 'center',
@@ -80,12 +80,12 @@ const HeaderText = styled(Typography)(({ theme }) => ({
   fontWeight: 700,
   fontSize: '14px',
   letterSpacing: '1px',
-  color: theme.palette.text.primary,
+  color: '#FFFFFF', // White text
   textTransform: 'uppercase'
 }));
 
 const IconWrapper = styled(Box)(({ theme }) => ({
-  color: theme.palette.text.primary,
+  color: '#FFFFFF', // White icon
   display: 'flex',
   alignItems: 'center',
   '& svg': {
@@ -159,27 +159,27 @@ const defaultStories: FounderStory[] = [
   {
     id: '1',
     name: 'Nitish',
-    title: 'Founder',
+    title: '',
     company: 'Co-Founder, Tech Startup',
     testimonial: 'Working with Aditya Ventures helped me identify the core metrics that actually matter for our diagnostic call alone worth 10X investment.',
-    avatarUrl: 'https://i.pravatar.cc/150?img=8',
+    avatarUrl: '../assets/nitish.jpg',
     icon: 'trophy'
   },
   {
     id: '2',
     name: 'Vandana',
-    title: 'Health Tech',
+    title: '',
     company: 'Co-Founder, Fintech Platform',
     testimonial: 'Aditya\'s approach to founder-market fit has completely changed how we think about product development and eliminated blind spots that existed.',
-    avatarUrl: 'https://i.pravatar.cc/150?img=14',
+    avatarUrl: '../assets/vandana.jpg',
     icon: 'star'
   },
   {
     id: '3',
-    name: 'Nitish',
-    title: 'Founder',
-    company: '',
-    testimonial: 'The traction-leak diagnosis helped us focus on what drives real growth and made the biggest change in our business since launch.',
+    name: 'Divyansh',
+    title: '',
+    company: 'Co-Founder SaaS Platform',
+    testimonial: 'From idea to first paying customers in 6 weeks. The system works when you follow the process and stay accountable.',
     avatarUrl: 'https://i.pravatar.cc/150?img=12',
     icon: 'diamond'
   }
@@ -206,7 +206,7 @@ const FounderStoriesSection: React.FC<FounderStoriesSectionProps> = ({
   return (
     <SectionContainer>
       <Container maxWidth="lg">
-        <SectionTitle variant="h4">
+        <SectionTitle variant="h4" >
           Founder Stories
         </SectionTitle>
         
@@ -217,7 +217,7 @@ const FounderStoriesSection: React.FC<FounderStoriesSectionProps> = ({
                 <IconWrapper>
                   {getIcon(story.icon)}
                 </IconWrapper>
-                <HeaderText>
+                <HeaderText >
                   Founder Story
                 </HeaderText>
               </CardHeader>
@@ -230,11 +230,11 @@ const FounderStoriesSection: React.FC<FounderStoriesSectionProps> = ({
                 
                 <TestimonialContainer>
                   <Stack direction="row" alignItems="flex-start" spacing={0.5}>
-                    <QuoteIcon>"</QuoteIcon>
+                    
                     <TestimonialText>
                       {story.testimonial}
                     </TestimonialText>
-                    <QuoteIcon>"</QuoteIcon>
+                    
                   </Stack>
                 </TestimonialContainer>
                 
@@ -249,11 +249,7 @@ const FounderStoriesSection: React.FC<FounderStoriesSectionProps> = ({
                   )}
                 </Box>
                 
-                {story.id === '3' && (
-                  <ReadMoreLink>
-                    Read More
-                  </ReadMoreLink>
-                )}
+                
               </StoryContent>
             </StoryCard>
           ))}
