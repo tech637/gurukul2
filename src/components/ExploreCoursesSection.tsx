@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
-import { Box, Typography, Container, IconButton, Stack } from '@mui/material';
+import { Box, Typography, Container } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
-import FilterVintageIcon from '@mui/icons-material/FilterVintage';
-import SettingsIcon from '@mui/icons-material/Settings';
-import EmojiObjectsIcon from '@mui/icons-material/EmojiObjects';
 
 const SectionContainer = styled(Box)(({ theme }) => ({
   padding: theme.spacing(10, 0),
@@ -21,12 +14,12 @@ const CenteredContent = styled(Box)(({ theme }) => ({
   maxWidth: '1200px',
   width: '100%',
   margin: '0 auto',
-  background: `linear-gradient(135deg, ${theme.palette.secondary.main} 0%, #FFD700 100%)`,
+  background: `linear-gradient(135deg, #0B1A3A 0%, #1e3a8a 100%)`,
   borderRadius: theme.spacing(3),
   padding: theme.spacing(8, 4),
   position: 'relative',
   overflow: 'hidden',
-  boxShadow: '0 20px 60px rgba(0, 0, 0, 0.1)',
+  boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
   [theme.breakpoints.down('md')]: {
     margin: theme.spacing(0, 2),
     padding: theme.spacing(6, 3)
@@ -47,9 +40,9 @@ const ContentWrapper = styled(Box)(({ theme }) => ({
 const SectionTitle = styled(Typography)(({ theme }) => ({
   fontSize: '64px',
   fontWeight: 800,
-  color: theme.palette.text.primary,
+  color: '#ffffff',
   marginBottom: theme.spacing(6),
-  textShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+  textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
   [theme.breakpoints.down('md')]: {
     fontSize: '48px'
   },
@@ -58,238 +51,193 @@ const SectionTitle = styled(Typography)(({ theme }) => ({
   }
 }));
 
-const IllustrationContainer = styled(Box)(({ theme }) => ({
-  position: 'relative',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  minHeight: '400px',
-  marginBottom: theme.spacing(4)
-}));
 
-const MainIllustration = styled(Box)(({ theme }) => ({
-  position: 'relative',
-  width: '300px',
-  height: '300px',
-  borderRadius: '50%',
-  background: 'radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%)',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+const CourseCard = styled(Box)<{ isExpanded: boolean }>(({ theme, isExpanded }) => ({
+  background: 'rgba(255, 255, 255, 0.95)',
+  borderRadius: theme.spacing(2),
+  padding: theme.spacing(4),
+  margin: theme.spacing(2),
+  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
   backdropFilter: 'blur(10px)',
-  boxShadow: '0 20px 60px rgba(0, 0, 0, 0.1)',
-  [theme.breakpoints.down('sm')]: {
-    width: '250px',
-    height: '250px'
-  }
-}));
-
-const GuruImage = styled('img')(({ theme }) => ({
-  width: '200px',
-  height: '200px',
-  borderRadius: '50%',
-  objectFit: 'cover',
-  border: `4px solid rgba(255, 255, 255, 0.5)`,
-  [theme.breakpoints.down('sm')]: {
-    width: '150px',
-    height: '150px'
-  }
-}));
-
-const FloatingIcon = styled(Box)<{ top: string; left: string; delay: string }>(({ theme, top, left, delay }) => ({
-  position: 'absolute',
-  top,
-  left,
-  width: '60px',
-  height: '60px',
-  borderRadius: '50%',
-  background: 'rgba(255, 255, 255, 0.9)',
+  border: '1px solid rgba(255, 255, 255, 0.2)',
+  minHeight: '300px',
   display: 'flex',
+  flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  boxShadow: '0 8px 25px rgba(0, 0, 0, 0.15)',
-  animation: `float 3s ease-in-out infinite ${delay}`,
-  '& svg': {
-    fontSize: '28px',
-    color: theme.palette.primary.main
-  },
-  '@keyframes float': {
-    '0%, 100%': {
-      transform: 'translateY(0px)'
-    },
-    '50%': {
-      transform: 'translateY(-10px)'
-    }
-  },
-  [theme.breakpoints.down('lg')]: {
-    display: 'none'
-  },
-  [theme.breakpoints.down('sm')]: {
-    width: '45px',
-    height: '45px',
-    '& svg': {
-      fontSize: '20px'
-    }
-  }
-}));
-
-const BooksStack = styled(Box)(({ theme }) => ({
-  position: 'absolute',
-  bottom: '-50px',
-  left: '50%',
-  transform: 'translateX(-50%)',
-  width: '120px',
-  height: '80px',
-  background: `linear-gradient(45deg, 
-    ${theme.palette.error.main} 0%, 
-    ${theme.palette.warning.main} 25%, 
-    ${theme.palette.info.main} 50%, 
-    ${theme.palette.success.main} 75%, 
-    ${theme.palette.secondary.main} 100%)`,
-  borderRadius: '8px',
-  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    top: '-15px',
-    left: '10px',
-    width: '100px',
-    height: '15px',
-    background: theme.palette.warning.dark,
-    borderRadius: '8px 8px 0 0'
-  },
-  '&::after': {
-    content: '""',
-    position: 'absolute',
-    top: '-30px',
-    left: '20px',
-    width: '80px',
-    height: '15px',
-    background: theme.palette.info.dark,
-    borderRadius: '8px 8px 0 0'
-  }
-}));
-
-const NavigationControls = styled(Box)(({ theme }) => ({
   position: 'relative',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  gap: theme.spacing(4),
-  marginTop: theme.spacing(4),
-  zIndex: 2,
-  [theme.breakpoints.up('lg')]: {
-    maxWidth: '800px',
-    margin: `${theme.spacing(4)} auto 0`
+  transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+  transform: isExpanded ? 'scale(1.02) translateY(-10px)' : 'scale(1)',
+  boxShadow: isExpanded ? '0 20px 60px rgba(0, 0, 0, 0.25)' : '0 8px 32px rgba(0, 0, 0, 0.1)',
+  '&:hover': {
+    transform: isExpanded ? 'scale(1.02) translateY(-10px)' : 'translateY(-5px)',
+    boxShadow: isExpanded ? '0 20px 60px rgba(0, 0, 0, 0.25)' : '0 12px 40px rgba(0, 0, 0, 0.15)'
   }
 }));
 
-const NavigationSide = styled(Stack)(({ theme }) => ({
-  flexDirection: 'row',
+const CourseTitle = styled(Typography)(({ theme }) => ({
+  fontSize: '24px',
+  fontWeight: 700,
+  color: theme.palette.primary.main,
+  marginBottom: theme.spacing(2),
+  textAlign: 'center'
+}));
+
+const CourseSubtitle = styled(Typography)(({ theme }) => ({
+  fontSize: '16px',
+  fontWeight: 600,
+  color: theme.palette.text.secondary,
+  marginBottom: theme.spacing(3),
+  textAlign: 'center',
+  fontStyle: 'italic'
+}));
+
+const CourseDescription = styled(Typography)<{ isExpanded: boolean }>(({ theme, isExpanded }) => ({
+  fontSize: '14px',
+  lineHeight: 1.6,
+  color: theme.palette.text.primary,
+  textAlign: 'left',
+  maxHeight: isExpanded ? '200px' : '0',
+  opacity: isExpanded ? 1 : 0,
+  overflow: 'hidden',
+  transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+  marginTop: isExpanded ? theme.spacing(1) : 0,
+  width: '100%'
+}));
+
+const CardHeader = styled(Box)<{ isExpanded: boolean }>(({ theme, isExpanded }) => ({
+  display: 'flex',
+  flexDirection: 'column',
   alignItems: 'center',
-  gap: theme.spacing(2)
+  justifyContent: 'center',
+  textAlign: 'center',
+  width: '100%',
+  transition: 'all 0.3s ease',
+  transform: isExpanded ? 'translateY(-20px)' : 'translateY(0)'
 }));
 
-const NavButton = styled(IconButton)(({ theme }) => ({
-  backgroundColor: 'rgba(0, 0, 0, 0.8)',
-  color: theme.palette.common.white,
-  width: '50px',
-  height: '50px',
+const LearnMoreButton = styled(Box)(({ theme }) => ({
+  background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.dark} 100%)`,
+  color: 'white',
+  padding: theme.spacing(1.5, 3),
+  borderRadius: theme.spacing(3),
+  fontSize: '14px',
+  fontWeight: 600,
+  cursor: 'pointer',
+  transition: 'all 0.3s ease',
+  marginTop: theme.spacing(3),
+  boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
   '&:hover': {
-    backgroundColor: 'rgba(0, 0, 0, 0.9)',
-    transform: 'scale(1.1)'
-  },
-  transition: 'all 0.3s ease'
+    transform: 'translateY(-2px)',
+    boxShadow: '0 6px 20px rgba(0, 0, 0, 0.3)'
+  }
 }));
 
-const DotsContainer = styled(Stack)(({ theme }) => ({
-  flexDirection: 'row',
-  gap: theme.spacing(1)
-}));
-
-const Dot = styled(Box)<{ active: boolean }>(({ theme, active }) => ({
-  width: '12px',
-  height: '12px',
+const CloseButton = styled(Box)(({ theme }) => ({
+  position: 'absolute',
+  top: theme.spacing(2),
+  right: theme.spacing(2),
+  width: '32px',
+  height: '32px',
   borderRadius: '50%',
-  backgroundColor: active ? theme.palette.common.white : 'rgba(255, 255, 255, 0.5)',
+  background: theme.palette.error.main,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  color: 'white',
+  fontSize: '18px',
+  fontWeight: 'bold',
   cursor: 'pointer',
   transition: 'all 0.3s ease',
   '&:hover': {
-    backgroundColor: theme.palette.common.white,
-    transform: 'scale(1.2)'
+    transform: 'scale(1.1)',
+    background: theme.palette.error.dark
+  },
+  '&::before': {
+    content: '"×"'
+  }
+}));
+
+const CoursesGrid = styled(Box)(({ theme }) => ({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+  gap: theme.spacing(3),
+  marginTop: theme.spacing(4),
+  [theme.breakpoints.down('md')]: {
+    gridTemplateColumns: '1fr',
+  gap: theme.spacing(2)
   }
 }));
 
 const ExploreCoursesSection: React.FC = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const totalSlides = 5;
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
 
-  const handlePrevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
-  };
-
-  const handleNextSlide = () => {
-    setCurrentSlide((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
-  };
-
-  const floatingIcons = [
-    { icon: <EmojiObjectsIcon />, top: '10%', left: '25%', delay: '0s' },
-    { icon: <FilterVintageIcon />, top: '5%', left: '50%', delay: '0.5s' },
-    { icon: <SettingsIcon />, top: '15%', left: '70%', delay: '1s' },
-    { icon: <MenuBookIcon />, top: '60%', left: '20%', delay: '1.5s' },
-    { icon: <LocationOnIcon />, top: '70%', left: '75%', delay: '2s' }
+  const courses = [
+    {
+      id: 1,
+      title: 'Bespoke Coaching',
+      subtitle: 'Evidence-led sprints from idea to scale.',
+      description: 'Based on your stage and goals, we place you in the right sprint: Zero to One (Validation or Launch) or One to Ten (GTM Scale-Up or Fundraising). Each sprint is evidence-led and outcome-defined. Validate smarter, ship a lean MVP customers pay for, engineer a GTM engine toward ₹1 Cr run-rate, or craft an investor-credible story. We help you pull the right levers through...'
+    },
+    {
+      id: 2,
+      title: 'On Demand Services',
+      subtitle: 'Fractional specialists that scale with you.',
+      description: 'Plug in fractional experts for Tech, Growth, Finance, Legal, and Hiring so you execute like a bigger team without adding headcount. We help you ship faster, track the right metrics, lower CAC, and keep your ops investor-ready. From no-code builds and product oversight to campaign design, partnerships, MIS, and compliance. It\'s execution muscle on demand, tailored to...'
+    },
+    {
+      id: 3,
+      title: 'Support Group',
+      subtitle: 'Smart builders make momentum contagious.',
+      description: 'A curated room of serious builders where momentum compounds. Get weekly group Q&A and AMAs, peer reviews that sharpen decisions, warm introductions, and access to templates and playbooks that save time. This is where you stay accountable, pressure-test ideas, and move faster together.'
+    }
   ];
+
+  const handleCardClick = (courseId: number) => {
+    setExpandedCard(expandedCard === courseId ? null : courseId);
+  };
 
   return (
     <SectionContainer>
       <CenteredContent>
         <ContentWrapper>
           <SectionTitle>
-            Explore Courses
+            Explore Programs
           </SectionTitle>
           
-          <IllustrationContainer>
-            <MainIllustration>
-              <GuruImage 
-                src="https://images.unsplash.com/photo-1633307116510-607670fc5439?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTAwNDR8MHwxfHNlYXJjaHwyfHxtZWRpdGF0aW9uJTIwbW9uayUyMGd1cnUlMjBib29rcyUyMGVkdWNhdGlvbiUyMHNwaXJpdHVhbHxlbnwwfDJ8fG9yYW5nZXwxNzU3MDcxNTUxfDA&ixlib=rb-4.1.0&q=85"
-                alt="Spiritual meditation guru - Shamblen Studios on Unsplash"
-                style={{ width: '200px', height: '200px' }}
-              />
-              <BooksStack />
-            </MainIllustration>
-            
-            {floatingIcons.map((item, index) => (
-              <FloatingIcon
-                key={index}
-                top={item.top}
-                left={item.left}
-                delay={item.delay}
-              >
-                {item.icon}
-              </FloatingIcon>
-            ))}
-          </IllustrationContainer>
-          
-          <NavigationControls>
-            <NavigationSide>
-              <NavButton onClick={handlePrevSlide}>
-                <ArrowBackIcon />
-              </NavButton>
-              <DotsContainer>
-                {Array.from({ length: totalSlides }).map((_, index) => (
-                  <Dot
-                    key={index}
-                    active={index === currentSlide}
-                    onClick={() => setCurrentSlide(index)}
-                  />
-                ))}
-              </DotsContainer>
-            </NavigationSide>
-            
-            <NavButton onClick={handleNextSlide}>
-              <ArrowForwardIcon />
-            </NavButton>
-          </NavigationControls>
+          <CoursesGrid>
+            {courses.map((course) => {
+              const isExpanded = expandedCard === course.id;
+              return (
+                <CourseCard 
+                  key={course.id} 
+                  isExpanded={isExpanded}
+                >
+                  {isExpanded && (
+                    <CloseButton onClick={() => handleCardClick(course.id)} />
+                  )}
+                  
+                  <CardHeader isExpanded={isExpanded}>
+                    <CourseTitle>
+                      {course.title}
+                    </CourseTitle>
+                    <CourseSubtitle>
+                      {course.subtitle}
+                    </CourseSubtitle>
+                    {!isExpanded && (
+                      <LearnMoreButton onClick={() => handleCardClick(course.id)}>
+                        Learn More
+                      </LearnMoreButton>
+                    )}
+                  </CardHeader>
+                  
+                  <CourseDescription isExpanded={isExpanded}>
+                    {course.description}
+                  </CourseDescription>
+                </CourseCard>
+              );
+            })}
+          </CoursesGrid>
         </ContentWrapper>
       </CenteredContent>
     </SectionContainer>
