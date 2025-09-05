@@ -60,8 +60,24 @@ const CardImage = styled(Box)(({ theme }) => ({
   height: 200,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
-  borderRadius: `0 0 ${theme.spacing(2)} ${theme.spacing(2)}`
+  borderRadius: `0 0 ${theme.spacing(2)} ${theme.spacing(2)}`,
+  position: 'relative',
+  overflow: 'hidden',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center'
 }));
+
+const CardImageElement = styled('img')({
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover', // Changed back to 'cover' for proper filling
+  borderRadius: 'inherit',
+  transition: 'transform 0.3s ease',
+  '&:hover': {
+    transform: 'scale(1.02)' // Subtle zoom on hover
+  }
+});
 
 const ActionButton = styled(Button)(({ theme }) => ({
   marginTop: theme.spacing(2),
@@ -81,27 +97,30 @@ const NetworkSection: React.FC = () => {
     {
       icon: <EmojiEventsOutlinedIcon />,
       title: 'Build Your Venture',
-      description: 'Turn or a restaurant owner gow a thriving startup startup with our our expert guidance auidance at it.',
+      description: 'Turn your idea into a thriving startup with our expert guidance and proven frameworks.',
       action: 'LEARN MORE →',
-      imageStyle: {
+      imageSrc: '/assets/venture-building.jpg',
+      fallbackStyle: {
         background: 'linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 50%, #45B7D1 100%)'
       }
     },
     {
       icon: <DiamondOutlinedIcon />,
       title: 'Accelerate Growth',
-      description: 'Join our inbucator or delivery riders delivership for mentorship, funding opportunities & rapid scaling.',
+      description: 'Join our incubator program for mentorship, funding opportunities & rapid scaling.',
       action: 'DISCOVER PROGRAMS →',
-      imageStyle: {
+      imageSrc: '/assets/growth.png',
+      fallbackStyle: {
         background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
       }
     },
     {
       icon: <Groups2OutlinedIcon />,
       title: 'Join Our Community',
-      description: 'If you are passionate about helping us achieve our goal to & resources for lifelong meals join team.',
+      description: 'Connect with like-minded founders and access resources for lifelong learning.',
       action: 'JOIN NOW',
-      imageStyle: {
+      imageSrc: '/assets/joincommunity.png',
+      fallbackStyle: {
         background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)'
       }
     }
@@ -134,7 +153,25 @@ const NetworkSection: React.FC = () => {
                   {feature.action}
                 </ActionButton>
               </CardHeader>
-              <CardImage sx={feature.imageStyle} />
+              <CardImage sx={feature.fallbackStyle}>
+                <CardImageElement 
+                  src={feature.imageSrc} 
+                  alt={feature.title}
+                  loading="lazy"
+                  onError={(e) => {
+                    // Hide image on error, show gradient background
+                    e.currentTarget.style.display = 'none';
+                  }}
+                  onLoad={(e) => {
+                    // Add a subtle fade-in effect when image loads
+                    e.currentTarget.style.opacity = '0';
+                    e.currentTarget.style.transition = 'opacity 0.3s ease';
+                    setTimeout(() => {
+                      e.currentTarget.style.opacity = '1';
+                    }, 100);
+                  }}
+                />
+              </CardImage>
             </FeatureCard>
           ))}
         </CardsContainer>
