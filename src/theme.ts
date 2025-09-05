@@ -36,95 +36,152 @@ const theme = createTheme({
     }
   },
   typography: {
-    fontFamily: '"Plus Jakarta Sans", "Roboto", sans-serif',
+    fontFamily: '"Plus Jakarta Sans", "Inter", "Roboto", sans-serif',
     h1: {
       fontFamily: 'Roboto, sans-serif',
-      fontSize: '112px',
-      fontWeight: 700,
-      letterSpacing: '-5.6px',
-      lineHeight: '112px',
-      '@media (max-width:768px)': {
-        fontSize: '64px',
-        lineHeight: '64px',
-        letterSpacing: '-3.2px'
+      fontSize: 'clamp(28px, 8vw, 64px)',
+      fontWeight: 900,
+      letterSpacing: '-0.02em',
+      lineHeight: 1.1,
+      '@media (max-width:480px)': {
+        fontSize: 'clamp(24px, 10vw, 40px)',
+        letterSpacing: '-0.01em'
       }
     },
     h2: {
       fontFamily: '"Plus Jakarta Sans", sans-serif',
-      fontSize: '63px',
+      fontSize: 'clamp(20px, 6vw, 40px)',
       fontWeight: 800,
-      letterSpacing: '-2px',
-      lineHeight: '80px',
-      '@media (max-width:768px)': {
-        fontSize: '48px',
-        lineHeight: '56px'
+      letterSpacing: '-0.01em',
+      lineHeight: 1.2,
+      '@media (max-width:480px)': {
+        fontSize: 'clamp(18px, 8vw, 28px)'
       }
     },
     h3: {
       fontFamily: '"Plus Jakarta Sans", sans-serif',
-      fontSize: '59px',
-      fontWeight: 800,
-      letterSpacing: '-3px',
-      lineHeight: '60px',
-      '@media (max-width:768px)': {
-        fontSize: '40px',
-        lineHeight: '48px'
+      fontSize: 'clamp(18px, 5vw, 28px)',
+      fontWeight: 700,
+      letterSpacing: '-0.01em',
+      lineHeight: 1.3,
+      '@media (max-width:480px)': {
+        fontSize: 'clamp(16px, 6vw, 22px)'
       }
     },
     h4: {
       fontFamily: '"Plus Jakarta Sans", sans-serif',
-      fontSize: '48px',
-      fontWeight: 500,
-      lineHeight: '56px',
-      '@media (max-width:768px)': {
-        fontSize: '32px',
-        lineHeight: '40px'
+      fontSize: 'clamp(16px, 4vw, 22px)',
+      fontWeight: 600,
+      lineHeight: 1.4,
+      '@media (max-width:480px)': {
+        fontSize: 'clamp(14px, 5vw, 18px)'
       }
     },
     h5: {
       fontFamily: '"Plus Jakarta Sans", sans-serif',
-      fontSize: '47px',
-      fontWeight: 800,
-      letterSpacing: '-2.4px',
-      lineHeight: '48px',
-      '@media (max-width:768px)': {
-        fontSize: '28px',
-        lineHeight: '32px'
+      fontSize: 'clamp(14px, 3vw, 18px)',
+      fontWeight: 600,
+      lineHeight: 1.4,
+      '@media (max-width:480px)': {
+        fontSize: 'clamp(13px, 4vw, 16px)'
+      }
+    },
+    h6: {
+      fontFamily: '"Plus Jakarta Sans", sans-serif',
+      fontSize: 'clamp(12px, 2.5vw, 16px)',
+      fontWeight: 600,
+      lineHeight: 1.4,
+      '@media (max-width:480px)': {
+        fontSize: 'clamp(11px, 3vw, 14px)'
       }
     },
     body1: {
       fontFamily: '"Plus Jakarta Sans", sans-serif',
-      fontSize: '20px',
+      fontSize: 'clamp(14px, 3vw, 16px)',
       fontWeight: 400,
-      lineHeight: '28px'
+      lineHeight: 1.6,
+      '@media (max-width:480px)': {
+        fontSize: 'clamp(13px, 4vw, 15px)',
+        lineHeight: 1.5
+      }
     },
     body2: {
       fontFamily: '"Plus Jakarta Sans", sans-serif',
-      fontSize: '16px',
+      fontSize: 'clamp(12px, 2.5vw, 14px)',
       fontWeight: 400,
-      lineHeight: '24px'
+      lineHeight: 1.5,
+      '@media (max-width:480px)': {
+        fontSize: 'clamp(11px, 3vw, 13px)'
+      }
     },
     subtitle1: {
       fontFamily: 'Roboto, sans-serif',
-      fontSize: '12px',
+      fontSize: 'clamp(10px, 2vw, 12px)',
       fontWeight: 700,
-      letterSpacing: '1px',
+      letterSpacing: '0.5px',
       textTransform: 'uppercase'
     }
   },
   shape: {
-    borderRadius: 12
+    borderRadius: 16
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: '9999px',
+          borderRadius: '16px',
           textTransform: 'none',
-          fontWeight: 500,
-          padding: '12px 24px'
+          fontWeight: 600,
+          padding: '12px 24px',
+          fontSize: 'clamp(14px, 2.5vw, 16px)',
+          minHeight: '48px',
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          '@media (max-width:480px)': {
+            padding: '14px 20px',
+            fontSize: '14px',
+            minHeight: '44px',
+            borderRadius: '12px'
+          }
         }
       }
+    },
+    MuiContainer: {
+      styleOverrides: {
+        root: {
+          paddingLeft: '16px',
+          paddingRight: '16px',
+          '@media (min-width:600px)': {
+            paddingLeft: '24px',
+            paddingRight: '24px'
+          },
+          '@media (min-width:900px)': {
+            paddingLeft: '32px',
+            paddingRight: '32px'
+          }
+        }
+      }
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: '16px',
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          '&:hover': {
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)',
+            transform: 'translateY(-2px)'
+          }
+        }
+      }
+    }
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536
     }
   }
 });

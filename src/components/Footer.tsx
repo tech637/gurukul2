@@ -6,6 +6,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import Logo from './Logo';
 
 const FooterContainer = styled(Box)(({ theme }) => ({
   background: theme.palette.primary.dark,
@@ -115,12 +116,15 @@ const Footer: React.FC = () => {
     <FooterContainer>
       <Container maxWidth="lg">
         <ContentWrapper>
-          <SocialTitle>
-            <StarIcon width={40} height={40} color="#FEB900" />
-            <GradientTitle>
-              Connect With Us
-            </GradientTitle>
-          </SocialTitle>
+          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, mb: 4 }}>
+            <Logo />
+            <SocialTitle>
+              <StarIcon width={40} height={40} color="#FEB900" />
+              <GradientTitle>
+                Connect With Us
+              </GradientTitle>
+            </SocialTitle>
+          </Box>
           
           <SubtitleText>
             Follow us for startup insights, founder stories, and exclusive content
