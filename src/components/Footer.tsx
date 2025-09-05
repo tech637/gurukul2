@@ -1,7 +1,11 @@
 import React from 'react';
-import { Box, Typography, Container, TextField, Button, Stack } from '@mui/material';
+import { Box, Typography, Container, Stack, IconButton, Link } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import StarIcon from './icons/StarIcon';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 
 const FooterContainer = styled(Box)(({ theme }) => ({
   background: theme.palette.primary.dark,
@@ -17,7 +21,7 @@ const ContentWrapper = styled(Stack)(({ theme }) => ({
   gap: theme.spacing(3)
 }));
 
-const NewsletterTitle = styled(Stack)(({ theme }) => ({
+const SocialTitle = styled(Stack)(({ theme }) => ({
   flexDirection: 'row',
   alignItems: 'center',
   gap: theme.spacing(2)
@@ -41,55 +45,30 @@ const SubtitleText = styled(Typography)(({ theme }) => ({
   fontWeight: 400
 }));
 
-const SubscriptionForm = styled(Stack)(({ theme }) => ({
+const SocialMediaContainer = styled(Stack)(({ theme }) => ({
   flexDirection: 'row',
   gap: theme.spacing(2),
   marginTop: theme.spacing(3),
+  justifyContent: 'center',
   [theme.breakpoints.down('sm')]: {
-    flexDirection: 'column'
+    gap: theme.spacing(1.5)
   }
 }));
 
-const StyledTextField = styled(TextField)(({ theme }) => ({
-  minWidth: '350px',
-  [theme.breakpoints.down('sm')]: {
-    minWidth: '100%'
-  },
-  '& .MuiOutlinedInput-root': {
-    backgroundColor: theme.palette.common.white,
-    borderRadius: '12px',
-    '& fieldset': {
-      borderColor: 'transparent'
-    },
-    '&:hover fieldset': {
-      borderColor: theme.palette.secondary.main
-    },
-    '&.Mui-focused fieldset': {
-      borderColor: theme.palette.secondary.main,
-      borderWidth: '2px'
-    }
-  },
-  '& .MuiOutlinedInput-input': {
-    padding: theme.spacing(1.5, 2),
-    fontSize: '16px'
-  }
-}));
-
-const SubscribeButton = styled(Button)(({ theme }) => ({
-  backgroundColor: theme.palette.secondary.main,
-  color: theme.palette.text.primary,
-  padding: theme.spacing(1.5, 4),
-  borderRadius: '12px',
-  textTransform: 'none',
-  fontWeight: 700,
-  fontSize: '16px',
-  minWidth: '140px',
+const SocialIconButton = styled(IconButton)(({ theme }) => ({
+  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+  color: theme.palette.common.white,
+  width: '56px',
+  height: '56px',
+  border: `2px solid rgba(255, 255, 255, 0.2)`,
+  transition: 'all 0.3s ease',
   '&:hover': {
-    backgroundColor: theme.palette.secondary.dark,
-    transform: 'translateY(-2px)',
-    boxShadow: '0 8px 25px rgba(254, 185, 0, 0.3)'
-  },
-  transition: 'all 0.3s ease'
+    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.text.primary,
+    transform: 'translateY(-3px)',
+    boxShadow: '0 8px 25px rgba(254, 185, 0, 0.3)',
+    borderColor: theme.palette.secondary.main
+  }
 }));
 
 const FooterBottom = styled(Box)(({ theme }) => ({
@@ -105,31 +84,66 @@ const CopyrightText = styled(Typography)(({ theme }) => ({
 }));
 
 const Footer: React.FC = () => {
+  const socialLinks = [
+    {
+      name: 'LinkedIn',
+      icon: <LinkedInIcon />,
+      url: 'https://linkedin.com/company/acharya-ventures',
+      color: '#0077B5'
+    },
+    {
+      name: 'Twitter',
+      icon: <TwitterIcon />,
+      url: 'https://twitter.com/acharyaventures',
+      color: '#1DA1F2'
+    },
+    {
+      name: 'Instagram',
+      icon: <InstagramIcon />,
+      url: 'https://instagram.com/acharyaventures',
+      color: '#E4405F'
+    },
+    {
+      name: 'YouTube',
+      icon: <YouTubeIcon />,
+      url: 'https://youtube.com/@acharyaventures',
+      color: '#FF0000'
+    }
+  ];
+
   return (
     <FooterContainer>
       <Container maxWidth="lg">
         <ContentWrapper>
-          <NewsletterTitle>
+          <SocialTitle>
             <StarIcon width={40} height={40} color="#FEB900" />
             <GradientTitle>
-              Cool stuff only
+              Connect With Us
             </GradientTitle>
-          </NewsletterTitle>
+          </SocialTitle>
           
           <SubtitleText>
-            Subscribe to our newsletter for startup insights, founder stories, and exclusive content
+            Follow us for startup insights, founder stories, and exclusive content
           </SubtitleText>
           
-          <SubscriptionForm>
-            <StyledTextField
-              placeholder="Enter your email address"
-              variant="outlined"
-              fullWidth
-            />
-            <SubscribeButton>
-              Subscribe
-            </SubscribeButton>
-          </SubscriptionForm>
+          <SocialMediaContainer>
+            {socialLinks.map((social) => (
+              <Link
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{ textDecoration: 'none' }}
+              >
+                <SocialIconButton
+                  aria-label={social.name}
+                  title={social.name}
+                >
+                  {social.icon}
+                </SocialIconButton>
+              </Link>
+            ))}
+          </SocialMediaContainer>
           
           <FooterBottom>
             <CopyrightText>

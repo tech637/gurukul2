@@ -8,7 +8,6 @@ import {
   Drawer,
   List,
   ListItem,
-  ListItemText,
   Container,
   Stack,
   useMediaQuery,
@@ -19,11 +18,26 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
-  backgroundColor: 'rgba(255, 255, 255, 0.95)',
-  backdropFilter: 'blur(10px)',
-  boxShadow: '0 2px 20px rgba(0, 0, 0, 0.08)',
-  borderBottom: `1px solid ${theme.palette.grey[200]}`,
-  color: theme.palette.text.primary
+  backgroundColor: 'rgba(255, 255, 255, 0.85)',
+  backdropFilter: 'blur(20px)',
+  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08)',
+  border: `1px solid rgba(255, 255, 255, 0.2)`,
+  borderRadius: '16px',
+  margin: theme.spacing(2),
+  width: 'calc(100% - 32px)',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  color: theme.palette.text.primary,
+  transition: 'all 0.3s ease',
+  [theme.breakpoints.down('sm')]: {
+    margin: theme.spacing(1),
+    width: 'calc(100% - 16px)',
+    borderRadius: '12px'
+  },
+  '&:hover': {
+    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1)'
+  }
 }));
 
 const Logo = styled(Typography)(({ theme }) => ({
@@ -104,7 +118,6 @@ const Navbar: React.FC = () => {
   };
 
   const navItems = [
-    { label: 'Programs', href: '#programs' },
     { label: 'About', href: '#about' },
     { label: 'Success Stories', href: '#success' },
     { label: 'FAQ', href: '#faq' }
@@ -121,8 +134,8 @@ const Navbar: React.FC = () => {
   return (
     <>
       <StyledAppBar position="fixed" elevation={0}>
-        <Container maxWidth="lg">
-          <Toolbar sx={{ justifyContent: 'space-between', py: 1 }}>
+        <Container maxWidth="lg" sx={{ px: 3 }}>
+          <Toolbar sx={{ justifyContent: 'space-between', py: 1, minHeight: '64px' }}>
             <Logo variant="h6">
               Startup Gurukul
             </Logo>
@@ -139,7 +152,10 @@ const Navbar: React.FC = () => {
                     </NavButton>
                   ))}
                 </Stack>
-                <CTAButton sx={{ ml: 2 }}>
+                <CTAButton 
+                  sx={{ ml: 2 }}
+                  onClick={() => window.open('https://learn.acharyaventures.com/web/checkout/68a96fa008d13b580d258227', '_blank')}
+                >
                   Book a Call
                 </CTAButton>
               </Stack>
@@ -186,7 +202,10 @@ const Navbar: React.FC = () => {
             </ListItem>
           ))}
           <ListItem disablePadding sx={{ mt: 2 }}>
-            <CTAButton fullWidth>
+            <CTAButton 
+              fullWidth
+              onClick={() => window.open('https://learn.acharyaventures.com/web/checkout/68a96fa008d13b580d258227', '_blank')}
+            >
               Book a Call
             </CTAButton>
           </ListItem>

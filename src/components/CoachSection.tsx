@@ -66,8 +66,6 @@ const CoachAvatar = styled(Avatar)(({ theme }) => ({
   width: 250,
   height: 300,
   borderRadius: theme.spacing(2), // Rectangular with rounded corners
-  border: `4px solid ${theme.palette.primary.light}`,
-  boxShadow: '0 4px 20px rgba(0, 81, 165, 0.2)',
   flexShrink: 0,
   [theme.breakpoints.down('md')]: {
     width: 200,
@@ -128,7 +126,7 @@ const BottomAccents = styled(Box)(({ theme }) => ({
 
 const CoachSection: React.FC = () => {
   return (
-    <SectionContainer>
+    <SectionContainer id="about">
       <Container maxWidth="lg">
         <SectionTitle variant="h4">
           About Your Coach

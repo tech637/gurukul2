@@ -76,7 +76,7 @@ const CardHeader = styled(Box)(({ theme }) => ({
   position: 'relative'
 }));
 
-const HeaderText = styled(Typography)(({ theme }) => ({
+const HeaderText = styled(Typography)(() => ({
   fontWeight: 700,
   fontSize: '14px',
   letterSpacing: '1px',
@@ -84,7 +84,7 @@ const HeaderText = styled(Typography)(({ theme }) => ({
   textTransform: 'uppercase'
 }));
 
-const IconWrapper = styled(Box)(({ theme }) => ({
+const IconWrapper = styled(Box)(() => ({
   color: '#FFFFFF', // White icon
   display: 'flex',
   alignItems: 'center',
@@ -114,12 +114,6 @@ const TestimonialContainer = styled(Box)(({ theme }) => ({
   marginBottom: theme.spacing(2)
 }));
 
-const QuoteIcon = styled(Typography)(({ theme }) => ({
-  fontSize: '20px',
-  color: theme.palette.primary.main,
-  fontWeight: 'bold',
-  lineHeight: 1
-}));
 
 const TestimonialText = styled(Typography)(({ theme }) => ({
   fontStyle: 'italic',
@@ -143,16 +137,6 @@ const FounderTitle = styled(Typography)(({ theme }) => ({
   fontWeight: 500
 }));
 
-const ReadMoreLink = styled(Typography)(({ theme }) => ({
-  fontSize: '14px',
-  color: theme.palette.secondary.main,
-  fontWeight: 600,
-  cursor: 'pointer',
-  marginTop: theme.spacing(1),
-  '&:hover': {
-    textDecoration: 'underline'
-  }
-}));
 
 // Default data
 const defaultStories: FounderStory[] = [
@@ -180,7 +164,7 @@ const defaultStories: FounderStory[] = [
     title: '',
     company: 'Co-Founder SaaS Platform',
     testimonial: 'From idea to first paying customers in 6 weeks. The system works when you follow the process and stay accountable.',
-    avatarUrl: 'https://i.pravatar.cc/150?img=12',
+    avatarUrl: '../assets/divyansh.jpg',
     icon: 'diamond'
   }
 ];
@@ -204,7 +188,7 @@ const FounderStoriesSection: React.FC<FounderStoriesSectionProps> = ({
   stories = defaultStories
 }) => {
   return (
-    <SectionContainer>
+    <SectionContainer id="success">
       <Container maxWidth="lg">
         <SectionTitle variant="h4" >
           Founder Stories

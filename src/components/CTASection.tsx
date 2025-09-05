@@ -14,7 +14,7 @@ const ContentWrapper = styled(Stack)(({ theme }) => ({
   gap: theme.spacing(4)
 }));
 
-const MainHeading = styled(Typography)(({ theme }) => ({
+const MainHeading = styled(Typography)(() => ({
   maxWidth: '800px',
   lineHeight: 1.2,
   fontWeight: 600
@@ -37,7 +37,7 @@ const StatsContainer = styled(Stack)(({ theme }) => ({
   }
 }));
 
-const StatItem = styled(Typography)(({ theme }) => ({
+const StatItem = styled(Typography)(() => ({
   fontSize: '16px',
   fontWeight: 500,
   opacity: 0.9
@@ -49,15 +49,19 @@ const RatingContainer = styled(Stack)(({ theme }) => ({
 }));
 
 const CTAButton = styled(Button)(({ theme }) => ({
-  backgroundColor: theme.palette.grey[400],
+  backgroundColor: '#fbbf24',
   color: theme.palette.common.white,
   padding: theme.spacing(2, 4),
   fontSize: '18px',
   fontWeight: 600,
   borderRadius: '12px',
   textTransform: 'none',
+  boxShadow: '0 4px 20px rgba(251, 191, 36, 0.3)',
+  transition: 'all 0.3s ease',
   '&:hover': {
-    backgroundColor: theme.palette.grey[500]
+    backgroundColor: '#f59e0b',
+    transform: 'translateY(-2px)',
+    boxShadow: '0 8px 30px rgba(251, 191, 36, 0.4)'
   }
 }));
 
@@ -85,7 +89,10 @@ const CTASection: React.FC = () => {
             </RatingContainer>
           </StatsContainer>
           
-          <CTAButton size="large">
+          <CTAButton 
+            size="large"
+            onClick={() => window.open('https://learn.acharyaventures.com/web/checkout/68a96fa008d13b580d258227', '_blank')}
+          >
             Book Your Diagnostic Call
           </CTAButton>
         </ContentWrapper>
