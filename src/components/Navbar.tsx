@@ -169,7 +169,7 @@ const Navbar: React.FC = () => {
 
   const navItems = [
     { label: 'About', href: '#about' },
-    { label: 'Programs', href: '#programs' },
+    { label: 'Sprint', href: '#programs' },
     { label: 'Success Stories', href: '#success' },
     { label: 'FAQ', href: '#faq' }
   ];

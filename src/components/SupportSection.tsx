@@ -208,7 +208,7 @@ const SupportSection: React.FC = () => {
           
           <DescriptionText>
             Designed for curious entrepreneurs and founding teams who are serious about starting up the right way. 
-            If you've got an idea and feel overwhelmed about how to begin, this program will give you the complete roadmap.
+            If you've got an idea and feel overwhelmed about how to begin, this sprint will give you the complete roadmap.
           </DescriptionText>
           
           <DescriptionText>
@@ -243,7 +243,7 @@ const SupportSection: React.FC = () => {
           <CTAButton 
             onClick={() => window.open('https://learn.acharyaventures.com/web/checkout/68625a098940d4ca05513d8e', '_blank')}
           >
-            Join Program
+            Join Sprint
           </CTAButton>
         </ContentWrapper>
       </Container>

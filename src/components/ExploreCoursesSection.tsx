@@ -84,16 +84,14 @@ const SectionSubtitle = styled(Typography)(({ theme }) => ({
 }));
 
 const ProgramsGrid = styled(Box)(({ theme }) => ({
-  display: 'grid',
-  gridTemplateColumns: '1fr',
+  display: 'flex',
+  flexDirection: 'column',
   gap: theme.spacing(3),
   marginTop: theme.spacing(4),
   [theme.breakpoints.up('sm')]: {
-    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-    gap: theme.spacing(4)
-  },
-  [theme.breakpoints.up('md')]: {
-    gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))'
+    flexDirection: 'row',
+    gap: theme.spacing(4),
+    alignItems: 'stretch'
   }
 }));
 
@@ -106,6 +104,9 @@ const ProgramCard = styled(Box)(({ theme }) => ({
   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
   position: 'relative',
   overflow: 'hidden',
+  flex: 1,
+  display: 'flex',
+  flexDirection: 'column',
   '&:hover': {
     transform: 'translateY(-4px)',
     boxShadow: '0 12px 40px rgba(0, 0, 0, 0.12)',
@@ -157,14 +158,19 @@ const ProgramSubtitle = styled(Typography)(({ theme }) => ({
 const ProgramDescription = styled(Typography)(({ theme }) => ({
   lineHeight: 1.6,
   color: theme.palette.text.secondary,
-  marginBottom: theme.spacing(3)
+  marginBottom: theme.spacing(2)
 }));
 
 const ProgramFeatures = styled(Box)(({ theme }) => ({
   display: 'flex',
-  flexWrap: 'wrap',
+  flexWrap: 'nowrap',
   gap: theme.spacing(1),
-  marginBottom: theme.spacing(3)
+  marginTop: 'auto',
+  paddingTop: theme.spacing(1),
+  justifyContent: 'flex-start',
+  [theme.breakpoints.down('sm')]: {
+    flexWrap: 'wrap'
+  }
 }));
 
 const FeatureChip = styled(Chip)(({ theme }) => ({
@@ -174,12 +180,14 @@ const FeatureChip = styled(Chip)(({ theme }) => ({
   fontSize: '11px',
   height: '24px',
   transition: 'all 0.3s ease',
+  flexShrink: 0,
   '&:hover': {
     transform: 'scale(1.05)',
     boxShadow: '0 2px 8px rgba(0, 81, 165, 0.3)'
   },
   '& .MuiChip-label': {
-    padding: '0 8px'
+    padding: '0 6px',
+    whiteSpace: 'nowrap'
   }
 }));
 
@@ -219,7 +227,7 @@ const ExploreCoursesSection: React.FC = () => {
       title: 'Bespoke Coaching',
       subtitle: 'Evidence-led sprints from idea to scale',
       description: 'Based on your stage and goals, we place you in the right sprint: Zero to One (Validation or Launch) or One to Ten (GTM Scale-Up or Fundraising). Each sprint is evidence-led and outcome-defined.',
-      features: ['1:1 Mentorship', 'Sprint Planning', 'Evidence-Based', 'Outcome-Focused'],
+      features: ['1:1 Mentorship', 'Outcome Focused', 'Evidence-Based'],
       icon: <TrendingUpIcon />,
       iconBg: 'linear-gradient(135deg, #10B981 0%, #059669 100%)'
     },
@@ -228,7 +236,7 @@ const ExploreCoursesSection: React.FC = () => {
       title: 'On Demand Services',
       subtitle: 'Fractional specialists that scale with you',
       description: 'Plug in fractional experts for Tech, Growth, Finance, Legal, and Hiring so you execute like a bigger team without adding headcount. We help you ship faster, track the right metrics, lower CAC.',
-      features: ['Tech Experts', 'Growth Specialists', 'Finance Pros', 'Legal Support'],
+      features: ['Tech Experts', 'Growth Specialists', 'Finance Pros'],
       icon: <SupportIcon />,
       iconBg: 'linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%)'
     },
@@ -237,7 +245,7 @@ const ExploreCoursesSection: React.FC = () => {
       title: 'Support Group',
       subtitle: 'Smart builders make momentum contagious',
       description: 'A curated room of serious builders where momentum compounds. Get weekly group Q&A and AMAs, peer reviews that sharpen decisions, warm introductions, and access to templates and playbooks.',
-      features: ['Peer Network', 'Weekly AMAs', 'Templates', 'Warm Intros'],
+      features: ['Peer Network', 'Weekly AMAs', 'Templates'],
       icon: <GroupIcon />,
       iconBg: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)'
     }
@@ -255,11 +263,11 @@ const ExploreCoursesSection: React.FC = () => {
       <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3 } }}>
         <ContentWrapper>
           <SectionTitle variant="h2">
-            Explore Programs
+            Explore Sprint
           </SectionTitle>
           
           <SectionSubtitle variant="h5">
-            Choose the perfect program to accelerate your startup journey
+            Choose the perfect Sprint to accelerate your startup journey
           </SectionSubtitle>
           
           <ProgramsGrid>

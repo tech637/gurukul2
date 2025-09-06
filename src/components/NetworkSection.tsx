@@ -100,7 +100,7 @@ const NetworkSection: React.FC = () => {
     {
       icon: <DiamondOutlinedIcon />,
       title: 'Accelerate Growth',
-      description: 'Join our incubator program for mentorship, funding opportunities & rapid scaling.',
+      description: 'Join our incubator sprint for mentorship, funding opportunities & rapid scaling.',
       imageSrc: '/assets/growth-image.png', // Replace with your image path
       imageAlt: 'Accelerate Growth'
     },

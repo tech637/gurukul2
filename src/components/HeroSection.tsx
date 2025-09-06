@@ -315,17 +315,16 @@ const HeroSection: React.FC = () => {
             Startup Gurukul
           </MainHeading>
           <DescriptionText>
-          Fix your biggest startup bottleneck in 60 minutes.<br/>
-          Leave with a personalised 14‑day plan you can run tomorrow.
+          A nest for curious founders and early builders to learn, experiment and take flight
           </DescriptionText>
 
-          <ButtonGroup>
+          {/* <ButtonGroup>
             <PrimaryButton 
               onClick={() => window.open('https://learn.acharyaventures.com/web/checkout/68a96fa008d13b580d258227', '_blank')}
             >
               Book Call
             </PrimaryButton>
-          </ButtonGroup>
+          </ButtonGroup> */}
 
           <StatsContainer>
             <StatItem>

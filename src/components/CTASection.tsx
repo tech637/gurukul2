@@ -305,7 +305,7 @@ const CTASection: React.FC = () => {
           </MainHeading>
           
           <SubHeading variant="h5" sx={{ animation: `${slideInRight} 0.8s ease-out 0.4s both` }}>
-            Don't navigate the startup journey alone. Join our comprehensive program and get the support, mentorship, and resources you need to build a successful venture.
+            Don't navigate the startup journey alone. Join our comprehensive Sprint and get the support, mentorship, and resources you need to build a successful venture.
           </SubHeading>
           
           <StatsContainer sx={{ animation: `${fadeInUp} 0.8s ease-out 0.6s both` }}>
@@ -345,7 +345,7 @@ const CTASection: React.FC = () => {
             <SecondaryButton 
               onClick={() => window.open('https://learn.acharyaventures.com/web/checkout/68625a098940d4ca05513d8e', '_blank')}
             >
-              Join Program
+              Join Sprint
             </SecondaryButton>
           </ButtonGroup>
         </ContentWrapper>
