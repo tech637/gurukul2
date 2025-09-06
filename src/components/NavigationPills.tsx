@@ -143,7 +143,9 @@ const PillContainer = styled(Box)(({ theme }) => ({
   }
 }));
 
-const ActiveIndicator = styled(Box)<{ activeIndex: number }>(({ theme, activeIndex }) => ({
+const ActiveIndicator = styled(Box, {
+  shouldForwardProp: (prop) => prop !== 'activeIndex',
+})<{ activeIndex: number }>(({ theme, activeIndex }) => ({
   position: 'absolute',
   top: '8px',
   left: '8px',
@@ -180,7 +182,9 @@ const ActiveIndicator = styled(Box)<{ activeIndex: number }>(({ theme, activeInd
   }
 }));
 
-const PillButton = styled(Button)<{ isActive?: boolean }>(({ theme, isActive }) => ({
+const PillButton = styled(Button, {
+  shouldForwardProp: (prop) => prop !== 'isActive',
+})<{ isActive?: boolean }>(({ theme, isActive }) => ({
   position: 'relative',
   zIndex: 2,
   flex: 1,

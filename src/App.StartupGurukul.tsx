@@ -1,7 +1,8 @@
 import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
-import { CssBaseline } from '@mui/material';
+import { CssBaseline, Box } from '@mui/material';
 import theme from './theme';
+import FlickeringGrid from './components/FlickeringGrid';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import NavigationPills from './components/NavigationPills';
@@ -19,18 +20,29 @@ const StartupGurukulApp: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Navbar />
-      <HeroSection />
-      <NavigationPills />
-      <HowWeHelpSection />
-      <NetworkSection />
-      <ExploreCoursesSection />
-      <SupportSection />
-      <CoachSection />
-      <FounderStoriesSection />
-      <FAQSection />
-      <CTASection />
-      <Footer />
+      <Box sx={{ position: 'relative', minHeight: '100vh' }}>
+        <FlickeringGrid 
+          squareSize={4}
+          gridGap={12}
+          flickerChance={0.2}
+          color="#FFD700"
+          maxOpacity={0.4}
+        />
+        <Box sx={{ position: 'relative', zIndex: 3 }}>
+          <Navbar />
+          <HeroSection />
+          <NavigationPills />
+          <HowWeHelpSection />
+          <NetworkSection />
+          <ExploreCoursesSection />
+          <SupportSection />
+          <CoachSection />
+          <FounderStoriesSection />
+          <FAQSection />
+          <CTASection />
+          <Footer />
+        </Box>
+      </Box>
     </ThemeProvider>
   );
 };
