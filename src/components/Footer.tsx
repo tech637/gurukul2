@@ -160,7 +160,7 @@ const Footer: React.FC = () => {
           
           <FooterBottom>
             <CopyrightText>
-              © 2024 Startup Gurukul by Acharya Ventures. All rights reserved.
+              © 2025 Startup Gurukul by Acharya Ventures. All rights reserved.
             </CopyrightText>
           </FooterBottom>
         </ContentWrapper>
