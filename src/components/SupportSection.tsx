@@ -26,16 +26,6 @@ const slideInLeft = keyframes`
   }
 `;
 
-const slideInRight = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
 
 const SectionContainer = styled(Box)(({ theme }) => ({
   background: `linear-gradient(135deg, ${theme.palette.primary.dark} 0%, #0B1A3A 100%)`,
@@ -65,62 +55,14 @@ const ContentWrapper = styled(Stack)(({ theme }) => ({
   flexDirection: 'column',
   alignItems: 'center',
   gap: theme.spacing(4),
-  maxWidth: '100%',
+  maxWidth: '800px',
   margin: '0 auto',
   position: 'relative',
   zIndex: 1,
-  textAlign: 'center',
-  [theme.breakpoints.up('md')]: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: theme.spacing(8),
-    textAlign: 'left'
-  }
+  textAlign: 'center'
 }));
 
-const TextContent = styled(Stack)(({ theme }) => ({
-  flex: 1,
-  gap: theme.spacing(3),
-  alignItems: 'center',
-  animation: `${slideInLeft} 0.8s ease-out`,
-  [theme.breakpoints.up('md')]: {
-    alignItems: 'flex-start'
-  }
-}));
 
-const ImageWrapper = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: '100%',
-  maxWidth: '300px',
-  animation: `${slideInRight} 0.8s ease-out`,
-  [theme.breakpoints.up('md')]: {
-    maxWidth: '400px',
-    minWidth: '300px'
-  }
-}));
-
-const SupportImage = styled('img')(({ theme }) => ({
-  width: '100%',
-  height: 'auto',
-  maxWidth: '280px',
-  objectFit: 'cover',
-  borderRadius: theme.spacing(2),
-  boxShadow: '0 12px 40px rgba(0, 0, 0, 0.3)',
-  border: `2px solid ${theme.palette.secondary.main}`,
-  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-  '&:hover': {
-    transform: 'translateY(-3px)',
-    boxShadow: '0 16px 50px rgba(0, 0, 0, 0.4)'
-  },
-  [theme.breakpoints.up('sm')]: {
-    maxWidth: '350px'
-  },
-  [theme.breakpoints.up('md')]: {
-    maxWidth: '400px'
-  }
-}));
 
 const MainHeading = styled(Typography)(({ theme }) => ({
   fontWeight: 900,
@@ -143,10 +85,7 @@ const DescriptionText = styled(Typography)(({ theme }) => ({
   lineHeight: 1.6,
   color: 'rgba(255, 255, 255, 0.9)',
   marginBottom: theme.spacing(2),
-  textAlign: 'center',
-  [theme.breakpoints.up('md')]: {
-    textAlign: 'left'
-  }
+  textAlign: 'center'
 }));
 
 const FeaturesList = styled(Box)(({ theme }) => ({
@@ -160,7 +99,8 @@ const FeaturesList = styled(Box)(({ theme }) => ({
     gap: theme.spacing(2)
   },
   [theme.breakpoints.up('md')]: {
-    gridTemplateColumns: '1fr'
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    gap: theme.spacing(2)
   }
 }));
 
@@ -237,81 +177,74 @@ const TrustBadge = styled(Box)(({ theme }) => ({
 const SupportSection: React.FC = () => {
   
   const features = [
-    '24/7 Expert Mentorship',
-    'Proven Growth Frameworks',
-    'Access to Investor Network',
-    'Comprehensive Resource Library',
-    'Peer Learning Community',
-    'Success Guarantee'
+    'Entrepreneurial Mindset',
+    'Innovation and Product Thinking',
+    'Building Low/No Cost MVP',
+    'Go-to-Market Strategy (GTMS)',
+    'Financial Modelling',
+    'Fundraising 101',
+    'Creating a Winning Pitch Deck',
+    'Advanced Fundraising Strategies'
   ];
 
   return (
     <SectionContainer id="support">
       <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3 } }}>
         <ContentWrapper>
-          <TextContent>
-            <TrustBadge>
-              <StarIcon sx={{ color: theme => theme.palette.secondary.main, fontSize: '18px' }} />
-              <Typography variant="body2" sx={{ color: 'white', fontWeight: 600, fontSize: '12px' }}>
-                Trusted by 500+ Founders
-              </Typography>
-            </TrustBadge>
+          <TrustBadge>
+            <StarIcon sx={{ color: theme => theme.palette.secondary.main, fontSize: '18px' }} />
+            <Typography variant="body2" sx={{ color: 'white', fontWeight: 600, fontSize: '12px' }}>
+              Only ₹3,499 - Limited Time
+            </Typography>
+          </TrustBadge>
 
-            <MainHeading variant="h2">
-              We Have Your Back
-            </MainHeading>
-            
-            <SubHeading variant="h4">
-              Startup Gurukul by Acharya Ventures
-            </SubHeading>
-            
-            <DescriptionText>
-              9 out of 10 startups fail because founders try to navigate chaos alone. 
-              We exist to change that through our comprehensive program.
-            </DescriptionText>
-            
-            <DescriptionText>
-              Join our ecosystem and get the support, mentorship, and resources you need 
-              to build a successful venture from idea to scale.
-            </DescriptionText>
-            
-            <FeaturesList>
-              {features.map((feature, index) => (
-                <FeatureItem 
-                  key={index}
-                  sx={{ 
-                    animation: `${fadeInUp} 0.8s ease-out ${0.6 + index * 0.1}s both` 
-                  }}
-                >
-                  <CheckCircleIcon sx={{ 
-                    color: theme => theme.palette.secondary.main, 
-                    fontSize: '18px',
-                    flexShrink: 0
-                  }} />
-                  <Typography variant="body2" sx={{ 
-                    color: 'white', 
-                    fontWeight: 500,
-                    fontSize: '14px'
-                  }}>
-                    {feature}
-                  </Typography>
-                </FeatureItem>
-              ))}
-            </FeaturesList>
-            
-            <CTAButton 
-              onClick={() => window.open('https://learn.acharyaventures.com/web/checkout/68944bb80d6a0376fee41207', '_blank')}
-            >
-              Join Startup Gurukul
-            </CTAButton>
-          </TextContent>
+          <MainHeading variant="h2">
+            Zero To One Launchpad
+          </MainHeading>
           
-          <ImageWrapper>
-            <SupportImage 
-              src="/assets/back.png" 
-              alt="Startup Gurukul - We have your back illustration"
-            />
-          </ImageWrapper>
+          <SubHeading variant="h4">
+            Sprint 1 - Validation with Fundamentals
+          </SubHeading>
+          
+          <DescriptionText>
+            Designed for curious entrepreneurs and founding teams who are serious about starting up the right way. 
+            If you've got an idea and feel overwhelmed about how to begin, this program will give you the complete roadmap.
+          </DescriptionText>
+          
+          <DescriptionText>
+            Unlearn and relearn the core fundamentals through 8 powerful modules that take you from first spark to first revenue. 
+            Validate before you commit, sell before you build, and optimize your cashflow & finances.
+          </DescriptionText>
+          
+          <FeaturesList>
+            {features.map((feature, index) => (
+              <FeatureItem 
+                key={index}
+                sx={{ 
+                  animation: `${fadeInUp} 0.8s ease-out ${0.6 + index * 0.1}s both` 
+                }}
+              >
+                <CheckCircleIcon sx={{ 
+                  color: theme => theme.palette.secondary.main, 
+                  fontSize: '18px',
+                  flexShrink: 0
+                }} />
+                <Typography variant="body2" sx={{ 
+                  color: 'white', 
+                  fontWeight: 500,
+                  fontSize: '14px'
+                }}>
+                  {feature}
+                </Typography>
+              </FeatureItem>
+            ))}
+          </FeaturesList>
+          
+          <CTAButton 
+            onClick={() => window.open('https://learn.acharyaventures.com/web/checkout/68625a098940d4ca05513d8e', '_blank')}
+          >
+            Join Program
+          </CTAButton>
         </ContentWrapper>
       </Container>
     </SectionContainer>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Container, Stack, Card, Button } from '@mui/material';
+import { Box, Typography, Container, Stack, Card } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined';
 import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined';
@@ -65,18 +65,6 @@ const CardImageContainer = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.grey[100]
 }));
 
-const ActionButton = styled(Button)(({ theme }) => ({
-  marginTop: theme.spacing(2),
-  color: theme.palette.text.secondary,
-  fontWeight: 600,
-  textTransform: 'uppercase',
-  fontSize: '14px',
-  letterSpacing: '0.5px',
-  '&:hover': {
-    backgroundColor: 'transparent',
-    color: theme.palette.primary.main
-  }
-}));
 
 // SVG Card Component
 interface SvgCardProps {
@@ -205,21 +193,18 @@ const NetworkSection: React.FC = () => {
       icon: <EmojiEventsOutlinedIcon />,
       title: 'Build Your Venture',
       description: 'Turn your idea into a thriving startup with our expert guidance and proven frameworks.',
-      action: 'LEARN MORE →',
       svgContent: ventureSvg
     },
     {
       icon: <DiamondOutlinedIcon />,
       title: 'Accelerate Growth',
       description: 'Join our incubator program for mentorship, funding opportunities & rapid scaling.',
-      action: 'DISCOVER PROGRAMS →',
       svgContent: growthSvg
     },
     {
       icon: <Groups2OutlinedIcon />,
       title: 'Join Our Community',
       description: 'Connect with like-minded founders and access resources for lifelong learning.',
-      action: 'JOIN NOW',
       svgContent: communitySvg
     }
   ];
@@ -247,9 +232,6 @@ const NetworkSection: React.FC = () => {
                 <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
                   {feature.description}
                 </Typography>
-                <ActionButton>
-                  {feature.action}
-                </ActionButton>
               </CardHeader>
               <SvgCard
                 svgContent={feature.svgContent}

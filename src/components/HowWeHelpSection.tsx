@@ -82,7 +82,7 @@ const HowWeHelpSection: React.FC = () => {
               controls
               poster="/assets/video-poster.jpg" // Add a poster image if you have one
             >
-              <source src="https://learn.acharyaventures.com/l/0a6767fb2c" type="video/mp4" />
+              <source src="/course-m1.mp4" type="video/mp4" />
               {/* Fallback content */}
               <VideoPlaceholder>
                 <Box>
