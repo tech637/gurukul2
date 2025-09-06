@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Box, Typography, Container, Stack, Button, Fade, Slide, Chip, useMediaQuery, useTheme } from '@mui/material';
 import { styled, keyframes } from '@mui/material/styles';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import GroupIcon from '@mui/icons-material/Group';
 import SupportIcon from '@mui/icons-material/Support';
@@ -76,7 +75,7 @@ const HeroContainer = styled(Box)(({ theme }) => ({
 
 const ContentWrapper = styled(Stack)(({ theme }) => ({
   position: 'relative',
-  zIndex: 2,
+  zIndex: 3,
   textAlign: 'center',
   alignItems: 'center',
   gap: theme.spacing(3),
@@ -91,10 +90,7 @@ const ContentWrapper = styled(Stack)(({ theme }) => ({
 }));
 
 const MainHeading = styled(Typography)(({ theme }) => ({
-  background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 50%, ${theme.palette.primary.dark} 100%)`,
-  WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent',
-  backgroundClip: 'text',
+  color: theme.palette.primary.main, // Navy blue
   fontWeight: 900,
   letterSpacing: '-0.01em',
   textShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
@@ -242,10 +238,7 @@ const StatItem = styled(Box)(({ theme }) => ({
 }));
 
 const StatNumber = styled(Typography)(({ theme }) => ({
-  background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-  WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent',
-  backgroundClip: 'text',
+  color: theme.palette.primary.main, // Navy blue
   lineHeight: 1,
   marginBottom: theme.spacing(0.5),
   fontWeight: 900
@@ -265,7 +258,7 @@ const FloatingElements = styled(Box)(({ theme }) => ({
   right: 0,
   bottom: 0,
   pointerEvents: 'none',
-  zIndex: 1,
+  zIndex: 2,
   [theme.breakpoints.down('sm')]: {
     display: 'none'
   }
@@ -348,11 +341,8 @@ const HeroSection: React.FC = () => {
             <PrimaryButton 
               onClick={() => window.open('https://learn.acharyaventures.com/web/checkout/68a96fa008d13b580d258227', '_blank')}
             >
-              Join the Program
+              Book Call
             </PrimaryButton>
-            <SecondaryButton startIcon={<PlayCircleOutlineIcon />}>
-              Watch Demo
-            </SecondaryButton>
           </ButtonGroup>
 
           <StatsContainer>

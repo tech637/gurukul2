@@ -117,7 +117,16 @@ const Footer: React.FC = () => {
       <Container maxWidth="lg">
         <ContentWrapper>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, mb: 4 }}>
-            <Logo />
+            <Box sx={{ 
+              display: 'flex', 
+              flexDirection: 'column', 
+              alignItems: 'center',
+              '& .MuiTypography-root': {
+                color: '#FFFFFF !important'
+              }
+            }}>
+              <Logo />
+            </Box>
             <SocialTitle>
               <StarIcon width={40} height={40} color="#FEB900" />
               <GradientTitle>

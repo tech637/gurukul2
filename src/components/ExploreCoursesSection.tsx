@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { Box, Typography, Container, Stack, Button, Chip, Fade, Slide, useMediaQuery, useTheme } from '@mui/material';
+import React from 'react';
+import { Box, Typography, Container, Chip, Fade, useMediaQuery, useTheme } from '@mui/material';
 import { styled, keyframes } from '@mui/material/styles';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import GroupIcon from '@mui/icons-material/Group';
 import SupportIcon from '@mui/icons-material/Support';
@@ -75,7 +74,6 @@ const SectionTitle = styled(Typography)(({ theme }) => ({
 
 const SectionSubtitle = styled(Typography)(({ theme }) => ({
   color: theme.palette.text.secondary,
-  marginBottom: theme.spacing(4),
   maxWidth: '100%',
   margin: '0 auto',
   marginBottom: theme.spacing(4),
@@ -185,42 +183,6 @@ const FeatureChip = styled(Chip)(({ theme }) => ({
   }
 }));
 
-const ProgramButton = styled(Button)(({ theme }) => ({
-  background: `linear-gradient(135deg, ${theme.palette.secondary.main} 0%, ${theme.palette.secondary.dark} 100%)`,
-  color: theme.palette.common.white,
-  padding: theme.spacing(1.5, 3),
-  fontWeight: 700,
-  textTransform: 'none',
-  borderRadius: theme.spacing(2),
-  boxShadow: '0 4px 15px rgba(254, 185, 0, 0.3)',
-  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-  width: '100%',
-  minHeight: '44px',
-  position: 'relative',
-  overflow: 'hidden',
-  '&:hover': {
-    transform: 'translateY(-1px)',
-    boxShadow: '0 6px 20px rgba(254, 185, 0, 0.4)',
-    background: `linear-gradient(135deg, ${theme.palette.secondary.dark} 0%, #B8860B 100%)`
-  },
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: '-100%',
-    width: '100%',
-    height: '100%',
-    background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
-    transition: 'left 0.5s',
-  },
-  '&:hover::before': {
-    left: '100%'
-  },
-  [theme.breakpoints.up('sm')]: {
-    width: 'auto',
-    minWidth: '180px'
-  }
-}));
 
 const FloatingElements = styled(Box)(({ theme }) => ({
   position: 'absolute',
@@ -259,8 +221,7 @@ const ExploreCoursesSection: React.FC = () => {
       description: 'Based on your stage and goals, we place you in the right sprint: Zero to One (Validation or Launch) or One to Ten (GTM Scale-Up or Fundraising). Each sprint is evidence-led and outcome-defined.',
       features: ['1:1 Mentorship', 'Sprint Planning', 'Evidence-Based', 'Outcome-Focused'],
       icon: <TrendingUpIcon />,
-      iconBg: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
-      buttonText: 'Start Coaching'
+      iconBg: 'linear-gradient(135deg, #10B981 0%, #059669 100%)'
     },
     {
       id: 2,
@@ -269,8 +230,7 @@ const ExploreCoursesSection: React.FC = () => {
       description: 'Plug in fractional experts for Tech, Growth, Finance, Legal, and Hiring so you execute like a bigger team without adding headcount. We help you ship faster, track the right metrics, lower CAC.',
       features: ['Tech Experts', 'Growth Specialists', 'Finance Pros', 'Legal Support'],
       icon: <SupportIcon />,
-      iconBg: 'linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%)',
-      buttonText: 'Get Experts'
+      iconBg: 'linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%)'
     },
     {
       id: 3,
@@ -279,8 +239,7 @@ const ExploreCoursesSection: React.FC = () => {
       description: 'A curated room of serious builders where momentum compounds. Get weekly group Q&A and AMAs, peer reviews that sharpen decisions, warm introductions, and access to templates and playbooks.',
       features: ['Peer Network', 'Weekly AMAs', 'Templates', 'Warm Intros'],
       icon: <GroupIcon />,
-      iconBg: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)',
-      buttonText: 'Join Community'
+      iconBg: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)'
     }
   ];
 
@@ -331,13 +290,6 @@ const ExploreCoursesSection: React.FC = () => {
                       <FeatureChip key={idx} label={feature} size="small" />
                     ))}
                   </ProgramFeatures>
-                  
-                  <ProgramButton 
-                    endIcon={<ArrowForwardIcon />}
-                    onClick={() => window.open('https://learn.acharyaventures.com/web/checkout/68a96fa008d13b580d258227', '_blank')}
-                  >
-                    {program.buttonText}
-                  </ProgramButton>
                 </ProgramCard>
               </Fade>
             ))}

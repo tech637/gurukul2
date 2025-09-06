@@ -20,7 +20,9 @@ const SectionContainer = styled(Box)(({ theme }) => ({
 const FAQTitle = styled(Typography)(({ theme }) => ({
   textAlign: 'center',
   marginBottom: theme.spacing(6),
-  fontWeight: 600
+  fontWeight: 900,
+  color: theme.palette.primary.main, // Navy blue
+  fontSize: 'clamp(28px, 6vw, 48px)'
 }));
 
 const StyledAccordion = styled(Accordion)(({ theme }) => ({
@@ -66,63 +68,28 @@ const FAQSection: React.FC = () => {
     },
     {
       id: 'panel2',
-      question: 'What is included in the diagnostic call?',
-      answer: 'The diagnostic call includes: 60-minute 1:1 session, personalized scorecard, action plan, sprint recommendation, session recording, PDF summary, and community access. Everything you need to get started.'
-    },
-    {
-      id: 'panel3',
       question: 'Is this for idea-stage or post-launch?',
       answer: 'Both. We work with founders 0–12 months in. The plan is tailored to your current stage.'
     },
     {
-      id: 'panel4',
-      question: 'Do I need to be technical?',
-      answer: 'No. We use no-code where it helps and guide dev where it\'s needed.'
-    },
-    {
-      id: 'panel5',
-      question: 'Can I skip the call and join a sprint?',
-      answer: 'You can, but we don\'t recommend it. Most founders misdiagnose the real leak. The call protects your time and spend.'
-    },
-    {
-      id: 'panel6',
-      question: 'How much time should I budget each week?',
-      answer: 'Expect 3–5 hours including sessions, implementation, and reviews.'
-    },
-    {
-      id: 'panel7',
+      id: 'panel3',
       question: 'What sectors do you work with?',
       answer: 'We are sector-agnostic. We\'ve coached founders working in D2C, Fintech, Manufacturing, Sustainability, FMCG, Platforms, Health, Travel, and more.'
     },
     {
-      id: 'panel8',
+      id: 'panel4',
       question: 'Is funding guaranteed?',
       answer: 'No. We help you become fundable: traction math, story, and a clean data room.'
     },
     {
-      id: 'panel9',
-      question: 'Will I get a certificate?',
-      answer: 'Yes. You get a completion certificate. Although your outcomes will matter more and speak for themselves.'
-    },
-    {
-      id: 'panel10',
+      id: 'panel5',
       question: 'Who will coach me?',
       answer: 'Your primary coach will be Aditya Bajaj. When needed we bring sector specialists into your 1:1s. Their fees are included. Have a preferred mentor? Tell us and we will arrange it.'
     },
     {
-      id: 'panel11',
+      id: 'panel6',
       question: 'What if the call isn\'t useful?',
       answer: 'Email us within 24 hours. If you got zero value, we\'ll refund you.'
-    },
-    {
-      id: 'panel12',
-      question: 'Does the ₹499 get adjusted later?',
-      answer: 'Yes. The fee is credited to any sprint you join within 14 days.'
-    },
-    {
-      id: 'panel13',
-      question: 'Are seats limited?',
-      answer: 'Yes. We cap diagnostic slots weekly to keep the work deep and personal.'
     }
   ];
 

@@ -340,7 +340,7 @@ const CTASection: React.FC = () => {
               endIcon={<ArrowForwardIcon />}
               onClick={() => window.open('https://learn.acharyaventures.com/web/checkout/68a96fa008d13b580d258227', '_blank')}
             >
-              Join Program Now
+              BookCall
             </PrimaryButton>
             <SecondaryButton>
               Schedule a Call

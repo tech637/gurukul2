@@ -27,10 +27,7 @@ const LogoImage = styled('img')(({ theme }) => ({
 const LogoText = styled(Typography)(({ theme }) => ({
   fontSize: 'clamp(18px, 4vw, 24px)',
   fontWeight: 900,
-  background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-  WebkitBackgroundClip: 'text',
-  WebkitTextFillColor: 'transparent',
-  backgroundClip: 'text',
+  color: theme.palette.primary.main, // Navy blue
   letterSpacing: '-0.01em',
   [theme.breakpoints.down('sm')]: {
     fontSize: 'clamp(16px, 4vw, 20px)'

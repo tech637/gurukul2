@@ -1,0 +1,18 @@
+---
+description: Project-wide rules for Cursor AI
+globs:
+  - "**/*.js"
+  - "**/*.ts"
+  - "**/*.jsx"
+  - "**/*.tsx"
+  - "**/*.css"
+  - "**/*.html"
+alwaysApply: true
+---
+
+rules:
+  - All code must ensure the website is mobile-friendly and responsive.
+  - Prefer relative units (%, em, rem, vw, vh) over fixed px for layouts.
+  - Use responsive design techniques: CSS flexbox, grid, and media queries.
+  - Avoid hardcoded widths/heights that break on small screens.
+  - Test layout compatibility for mobile (≤ 768px), tablet, and desktop.

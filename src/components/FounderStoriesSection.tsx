@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Box,
   Typography,
@@ -6,9 +6,7 @@ import {
   Card,
   CardContent,
   Avatar,
-  Stack,
-  Button,
-  IconButton,
+  Grid,
   useMediaQuery,
   useTheme
 } from '@mui/material';
@@ -16,8 +14,6 @@ import { styled, keyframes } from '@mui/material/styles';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import StarIcon from '@mui/icons-material/Star';
 import DiamondIcon from '@mui/icons-material/Diamond';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 
 const fadeInUp = keyframes`
@@ -122,22 +118,31 @@ const SectionHeader = styled(Box)(({ theme }) => ({
 
 const SectionSubtitle = styled(Typography)(({ theme }) => ({
   color: '#001F3F',
-  fontSize: 'clamp(14px, 2vw, 16px)',
-  fontWeight: 500,
-  marginBottom: theme.spacing(1),
-  animation: `${slideInLeft} 0.8s ease-out`
+  fontSize: 'clamp(16px, 3vw, 20px)',
+  fontWeight: 600,
+  marginBottom: theme.spacing(2),
+  animation: `${slideInLeft} 0.8s ease-out`,
+  [theme.breakpoints.down('sm')]: {
+    fontSize: 'clamp(18px, 4vw, 22px)',
+    fontWeight: 700
+  }
 }));
 
 const SectionTitle = styled(Typography)(({ theme }) => ({
   fontFamily: 'serif',
-  fontWeight: 700,
-  fontSize: 'clamp(28px, 5vw, 40px)',
-  lineHeight: 'clamp(36px, 6vw, 48px)',
+  fontWeight: 900,
+  fontSize: 'clamp(24px, 6vw, 48px)',
+  lineHeight: 'clamp(32px, 7vw, 56px)',
   color: '#001F3F',
   letterSpacing: '-0.01em',
-  marginBottom: theme.spacing(2),
+  marginBottom: theme.spacing(3),
   animation: `${slideInRight} 0.8s ease-out 0.2s both`,
   position: 'relative',
+  [theme.breakpoints.down('sm')]: {
+    fontSize: 'clamp(28px, 8vw, 36px)',
+    lineHeight: 'clamp(36px, 9vw, 44px)',
+    fontWeight: 900
+  },
   '&::after': {
     content: '""',
     position: 'absolute',
@@ -155,57 +160,13 @@ const SectionTitle = styled(Typography)(({ theme }) => ({
   }
 }));
 
-const NavigationContainer = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  gap: theme.spacing(2),
-  marginBottom: theme.spacing(4),
+const StoriesGrid = styled(Grid)(({ theme }) => ({
+  marginTop: theme.spacing(4),
   animation: `${fadeInUp} 0.8s ease-out 0.4s both`
 }));
 
-const NavButton = styled(IconButton)(({ theme }) => ({
-  width: '48px',
-  height: '48px',
-  borderRadius: '50%',
-  background: '#001F3F',
-  color: '#FFFFFF',
-  border: '2px solid #FEDB00',
-  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-  '&:hover': {
-    background: '#FEDB00',
-    color: '#001F3F',
-    transform: 'scale(1.1)',
-    boxShadow: '0 4px 12px rgba(254, 219, 0, 0.3)'
-  },
-  [theme.breakpoints.down('sm')]: {
-    width: '40px',
-    height: '40px'
-  }
-}));
-
-const CarouselContainer = styled(Box)(({ theme }) => ({
-  position: 'relative',
-  overflow: 'hidden',
-  width: '100%',
-  maxWidth: '1200px',
-  margin: '0 auto'
-}));
-
-const CarouselTrack = styled(Box)<{ translateX: number; totalStories: number; cardsPerView: number }>(({ theme, translateX, totalStories, cardsPerView }) => ({
-  display: 'flex',
-  transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-  transform: `translateX(${translateX}%)`,
-  width: `${(totalStories / cardsPerView) * 100}%`, // Dynamic width based on total stories
-  [theme.breakpoints.down('md')]: {
-    width: `${totalStories * 100}%` // Full width for each card on mobile
-  }
-}));
-
-const TestimonialCard = styled(Card)<{ cardsPerView: number }>(({ theme, cardsPerView }) => ({
-  flex: `0 0 ${100 / cardsPerView}%`, // Dynamic flex based on cards per view
-  maxWidth: '400px',
-  width: '100%',
+const TestimonialCard = styled(Card)(({ theme }) => ({
+  height: '100%',
   borderRadius: theme.spacing(3),
   background: '#FFFFFF',
   border: '2px solid #FEDB00',
@@ -213,17 +174,12 @@ const TestimonialCard = styled(Card)<{ cardsPerView: number }>(({ theme, cardsPe
   overflow: 'hidden',
   transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
   position: 'relative',
-  margin: `0 ${theme.spacing(1)}`,
   '&:hover': {
     transform: 'translateY(-8px)',
     boxShadow: '0 16px 48px rgba(0, 31, 63, 0.25)',
     '& .quote-icon': {
       transform: 'scale(1.1) rotate(5deg)'
     }
-  },
-  [theme.breakpoints.down('md')]: {
-    flex: '0 0 100%', // Full width on mobile
-    margin: `0 ${theme.spacing(0.5)}`
   }
 }));
 
@@ -416,26 +372,7 @@ const defaultStories: FounderStory[] = [
     icon: 'diamond',
     rating: 5
   },
-  {
-    id: '4',
-    name: 'Divyansh',
-    title: 'Co-Founder',
-    company: 'SaaS Platform',
-    testimonial: 'From idea to first paying customers in 6 weeks. The system works when you follow the process and stay accountable.',
-    avatarUrl: '../assets/divyansh.jpg',
-    icon: 'diamond',
-    rating: 5
-  },
-  {
-    id: '5',
-    name: 'Divyansh',
-    title: 'Co-Founder',
-    company: 'SaaS Platform',
-    testimonial: 'From idea to first paying customers in 6 weeks. The system works when you follow the process and stay accountable.',
-    avatarUrl: '../assets/divyansh.jpg',
-    icon: 'diamond',
-    rating: 5
-  }
+  
 ];
 
 // Icon mapping
@@ -456,34 +393,8 @@ const getIcon = (iconType: string) => {
 const FounderStoriesSection: React.FC<FounderStoriesSectionProps> = ({
   stories = defaultStories
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  
-  const totalStories = stories.length;
-  const cardsPerView = isMobile ? 1 : 3; // Show 1 card on mobile, 3 on desktop
-  const maxIndex = Math.max(0, totalStories - cardsPerView);
-
-  const handlePrevious = () => {
-    setCurrentIndex((prev) => {
-      if (prev === 0) {
-        return maxIndex; // Jump to last possible position
-      }
-      return prev - 1;
-    });
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => {
-      if (prev >= maxIndex) {
-        return 0; // Jump to first position
-      }
-      return prev + 1;
-    });
-  };
-
-  // Calculate translateX for carousel
-  const translateX = -(currentIndex * (100 / cardsPerView)); // Each card takes 1/cardsPerView of container
 
   return (
     <SectionContainer id="success">
@@ -496,33 +407,27 @@ const FounderStoriesSection: React.FC<FounderStoriesSectionProps> = ({
 
       <Container maxWidth="lg">
         <SectionHeader>
-          <SectionSubtitle>
+          <SectionSubtitle component="h3" variant="h3">
             Entrepreneurs Who Transformed with Our Coaching
           </SectionSubtitle>
-          <SectionTitle>
+          <SectionTitle component="h2" variant="h2">
             A SMALL GLIMPSE OF CLIENT SUCCESS STORIES!
           </SectionTitle>
         </SectionHeader>
 
-        <NavigationContainer>
-          <NavButton onClick={handlePrevious}>
-            <ArrowBackIosIcon />
-          </NavButton>
-          <NavButton onClick={handleNext}>
-            <ArrowForwardIosIcon />
-          </NavButton>
-        </NavigationContainer>
-
-        <CarouselContainer>
-          <CarouselTrack translateX={translateX} totalStories={totalStories} cardsPerView={cardsPerView}>
-            {stories.map((story, index) => (
-              <TestimonialCard 
-                key={story.id}
-                cardsPerView={cardsPerView}
-                sx={{ 
-                  animation: `${fadeInUp} 0.8s ease-out ${0.6 + index * 0.2}s both`
-                }}
-              >
+        <StoriesGrid container spacing={3}>
+          {stories.map((story, index) => (
+            <Grid 
+              item 
+              xs={12} 
+              sm={6} 
+              md={4} 
+              key={story.id}
+              sx={{ 
+                animation: `${fadeInUp} 0.8s ease-out ${0.6 + index * 0.2}s both`
+              }}
+            >
+              <TestimonialCard>
                 <CardHeader>
                   <HeaderLeft>
                     <IconWrapper>
@@ -568,9 +473,9 @@ const FounderStoriesSection: React.FC<FounderStoriesSectionProps> = ({
                   </TestimonialText>
                 </CardContentStyled>
               </TestimonialCard>
-            ))}
-          </CarouselTrack>
-        </CarouselContainer>
+            </Grid>
+          ))}
+        </StoriesGrid>
       </Container>
     </SectionContainer>
   );

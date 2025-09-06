@@ -78,18 +78,16 @@ const HowWeHelpSection: React.FC = () => {
           </Typography>
           
           <VideoContainer>
-            {/* Replace with your actual video source */}
             <VideoElement
               controls
               poster="/assets/video-poster.jpg" // Add a poster image if you have one
             >
-              <source src="/assets/demo-video.mp4" type="video/mp4" />
-              <source src="/assets/demo-video.webm" type="video/webm" />
+              <source src="https://learn.acharyaventures.com/l/0a6767fb2c" type="video/mp4" />
               {/* Fallback content */}
               <VideoPlaceholder>
                 <Box>
                   <Typography variant="h6" sx={{ mb: 2 }}>
-                    🎥 Demo Video Coming Soon
+                    🎥 Demo Video
                   </Typography>
                   <Typography variant="body2">
                     Watch how we help founders turn ideas into fundable businesses

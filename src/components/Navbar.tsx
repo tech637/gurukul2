@@ -223,7 +223,7 @@ const Navbar: React.FC = () => {
             fullWidth
             onClick={() => window.open('https://learn.acharyaventures.com/web/checkout/68a96fa008d13b580d258227', '_blank')}
           >
-            Join Program
+            Book Call
           </CTAButton>
         </Box>
       </DrawerContent>
@@ -255,7 +255,7 @@ const Navbar: React.FC = () => {
                   <CTAButton 
                     onClick={() => window.open('https://learn.acharyaventures.com/web/checkout/68a96fa008d13b580d258227', '_blank')}
                   >
-                    Join Program
+                    Book Call
                   </CTAButton>
                 </Box>
               ) : (
