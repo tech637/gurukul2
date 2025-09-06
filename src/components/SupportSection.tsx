@@ -176,7 +176,7 @@ const TrustBadge = styled(Box)(({ theme }) => ({
 
 const SupportSection: React.FC = () => {
   
-  const features = [
+  const sprint1Features = [
     'Entrepreneurial Mindset',
     'Innovation and Product Thinking',
     'Building Low/No Cost MVP',
@@ -199,9 +199,23 @@ const SupportSection: React.FC = () => {
           </TrustBadge>
 
           <MainHeading variant="h2">
-            Zero To One Launchpad
+            Converting Marathons into Sprints
           </MainHeading>
           
+          <DescriptionText>
+            Traditional entrepreneurship education is like running a marathon - overwhelming and exhausting. 
+            We break down the startup journey into focused, achievable sprints.
+          </DescriptionText>
+          
+          <DescriptionText>
+            A sprint is a concentrated, time-bound learning experience that takes you from confusion to clarity, from idea to action. 
+            Get hands-on, practical guidance that moves you forward fast.
+          </DescriptionText>
+          
+          <DescriptionText>
+            Each sprint delivers real results: validate ideas, build MVPs, and create momentum while learning the fundamentals that matter.
+          </DescriptionText>
+
           <SubHeading variant="h4">
             Sprint 1 - Validation with Fundamentals
           </SubHeading>
@@ -217,7 +231,7 @@ const SupportSection: React.FC = () => {
           </DescriptionText>
           
           <FeaturesList>
-            {features.map((feature, index) => (
+            {sprint1Features.map((feature, index) => (
               <FeatureItem 
                 key={index}
                 sx={{ 
@@ -243,7 +257,7 @@ const SupportSection: React.FC = () => {
           <CTAButton 
             onClick={() => window.open('https://learn.acharyaventures.com/web/checkout/68625a098940d4ca05513d8e', '_blank')}
           >
-            Join Sprint
+            Join Sprint 1
           </CTAButton>
         </ContentWrapper>
       </Container>
