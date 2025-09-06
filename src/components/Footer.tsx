@@ -89,26 +89,20 @@ const Footer: React.FC = () => {
     {
       name: 'LinkedIn',
       icon: <LinkedInIcon />,
-      url: 'https://linkedin.com/company/acharya-ventures',
+      url: 'https://www.linkedin.com/company/acharya-ventures',
       color: '#0077B5'
     },
     {
       name: 'Twitter',
       icon: <TwitterIcon />,
-      url: 'https://twitter.com/acharyaventures',
+      url: 'https://x.com/Aditya92bajaj',
       color: '#1DA1F2'
     },
     {
       name: 'Instagram',
       icon: <InstagramIcon />,
-      url: 'https://instagram.com/acharyaventures',
+      url: 'https://www.instagram.com/startup.gurukul/?igsh=YXV4ZmN2bWxqcDV6&utm_source=qr#',
       color: '#E4405F'
-    },
-    {
-      name: 'YouTube',
-      icon: <YouTubeIcon />,
-      url: 'https://youtube.com/@acharyaventures',
-      color: '#FF0000'
     }
   ];
 
