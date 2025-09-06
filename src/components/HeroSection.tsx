@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Container, Stack, Button, Fade, Slide, Chip, useMediaQuery, useTheme } from '@mui/material';
 import { styled, keyframes } from '@mui/material/styles';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import GroupIcon from '@mui/icons-material/Group';
 import SupportIcon from '@mui/icons-material/Support';
@@ -283,24 +282,6 @@ const FloatingIcon = styled(Box)<{ top: string; left: string; delay: string }>((
   }
 }));
 
-const ScrollIndicator = styled(Box)(({ theme }) => ({
-  position: 'absolute',
-  bottom: theme.spacing(2),
-  left: '50%',
-  transform: 'translateX(-50%)',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  gap: theme.spacing(1),
-  color: theme.palette.primary.main,
-  cursor: 'pointer',
-  transition: 'all 0.3s ease',
-  animation: `${fadeInUp} 0.8s ease-out 1s both`,
-  '&:hover': {
-    color: theme.palette.secondary.main,
-    transform: 'translateX(-50%) translateY(-3px)'
-  }
-}));
 
 const HeroSection: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -334,7 +315,8 @@ const HeroSection: React.FC = () => {
             Startup Gurukul
           </MainHeading>
           <DescriptionText>
-            A premium ecosystem for ambitious founders to learn, experiment, and scale their ventures from idea to market leadership
+          Fix your biggest startup bottleneck in 60 minutes.<br/>
+          Leave with a personalised 14‑day plan you can run tomorrow.
           </DescriptionText>
 
           <ButtonGroup>
@@ -382,15 +364,6 @@ const HeroSection: React.FC = () => {
         </ContentWrapper>
       </Container>
 
-      <ScrollIndicator onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}>
-        <Typography variant="body2" sx={{ fontSize: { xs: '11px', sm: '12px' } }}>
-          Scroll to explore
-        </Typography>
-        <ArrowDownwardIcon sx={{ 
-          animation: `${float} 2s ease-in-out infinite`,
-          fontSize: { xs: '20px', sm: '24px' }
-        }} />
-      </ScrollIndicator>
     </HeroContainer>
   );
 };

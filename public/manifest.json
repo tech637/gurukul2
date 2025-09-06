@@ -1,11 +1,11 @@
 {
   "name": "Startup Gurukul by Acharya Ventures",
   "short_name": "Startup Gurukul",
-  "description": "A premium ecosystem for ambitious founders to learn, experiment, and scale their ventures from idea to market leadership.",
+  "description": "Fix your biggest startup bottleneck in 60 minutes .Leave with a personalised 14‑day plan you can run tomorrow.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#E6F3FF",
-  "theme_color": "#0051A5",
+  "background_color": "#001F3F",
+  "theme_color": "#001F3F",
   "icons": [
     {
       "src": "/favicon-16x16.png",
@@ -16,6 +16,12 @@
       "src": "/favicon-32x32.png",
       "sizes": "32x32",
       "type": "image/png"
+    },
+    {
+      "src": "/Logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/apple-touch-icon.png",

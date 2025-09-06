@@ -52,12 +52,29 @@ const VideoPlaceholder = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  backgroundColor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+  backgroundImage: 'url(/assets/coach-background.png)',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
   color: 'white',
   fontSize: '18px',
   fontWeight: 600,
   textAlign: 'center',
-  padding: theme.spacing(4)
+  padding: theme.spacing(4),
+  position: 'relative',
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    zIndex: 1
+  },
+  '& > *': {
+    position: 'relative',
+    zIndex: 2
+  }
 }));
 
 const HowWeHelpSection: React.FC = () => {
@@ -80,7 +97,10 @@ const HowWeHelpSection: React.FC = () => {
           <VideoContainer>
             <VideoElement
               controls
-              poster="/assets/video-poster.jpg" // Add a poster image if you have one
+              preload="metadata"
+              onError={(e) => {
+                console.log('Video error:', e);
+              }}
             >
               <source src="/course-m1.mp4" type="video/mp4" />
               {/* Fallback content */}
